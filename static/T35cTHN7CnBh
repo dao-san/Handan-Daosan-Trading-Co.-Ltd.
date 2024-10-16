@@ -1,0 +1,1006 @@
+
+                if(typeof $ !== 'function'){
+                            var scriptTag = document.createElement('script');
+                            scriptTag.src = 'https://biz.ai.cc/assets/js/libs/jquery-3.1.1.min.js';
+                            document.body.appendChild(scriptTag);
+                        }
+           var aicc_ifarem_app_init = function() {
+                    if(document.getElementsByClassName("aiccc-client").length === 0){
+
+                        var scriptTag = document.createElement('script');
+                        scriptTag.src = 'https://biz.ai.cc/static/js/markdown-it.js?v=3';
+                        document.body.appendChild(scriptTag);
+
+                        var divTag = document.createElement('div');
+                        divTag.className = 'aicc-kf';
+                        divTag.innerHTML = `<link rel="stylesheet" type="text/css" href="https://biz.ai.cc/aichatiframe/assets/aicc-chat-client.css?v=24">
+<!-- aiccc-client start -->
+<div class="aiccc-client" >
+
+    <!-- 弹窗主体 start -->
+    <div class="aiccc-wrap">
+        <!-- aiccc-win start-->
+        <div class="aiccc-win">
+
+            <!-- chat-win-head start -->
+            <div class="chat-win-head">
+                <!-- 选项卡 -->
+                <ul class="aiccc-head-tabs">
+                    <li class="aiccc-tab-item aiccc-tab-active">
+                        <i class="aiccc-tab-ico tab-ico-chat"></i><span class="aiccc-tab-txt">拓拓</span>
+                    </li>
+                                    </ul>
+                        </div>
+            <!--// chat-win-head end -->
+
+            <!-- chat-win-body start -->
+            <div class="chat-win-body">
+                <!-- 谈话 start -->
+                <div class="chat-win-panel aiccc-page aiccc-panel-active">
+                    <div class="chat-win-view">
+                        <section class="chat-win-section chat-win-scroll chat-page-wrap">
+                            <div class="chat-page-top">
+                                <div class="chat-top-avatar">
+                                    <img class="bg_color_zt" src="https://biz.ai.cc/assets/img/t/4.png" alt="">
+                                </div>
+                                                                    <div class="chat-top-tips"><a href="#" onclick="qiehuanrengongfuwu(this)">Online Service</a></div>
+                                                            </div>
+                            <div class="chat-page-main">
+                                <!-- 谈话列表 -->
+                                <ul id="aiccc-lists-item" class="aiccc-list"></ul>
+                            </div>
+                        </section>
+                        <!-- 常见问题 -->
+                        <section class="chat-win-section chat-page-may">
+                            <ul class="chat-may-bar chat-may-input">
+                                                            </ul>
+                        </section>
+                        <!-- 输入信息 -->
+                        <section class="chat-win-section chat-page-edit">
+                            <div class="aiccc-editor">
+                                <div class="aiccc-edit-cell" id="aicc_input_message">
+                                    <div class="aiccc-edit-cell-cont">
+                                        <textarea cols="30" rows="2" class="aiccc-textarea" placeholder="Enter message..."></textarea>
+                                    </div>
+                                    <div class="aiccc-edit-cell-ft" style="position: relative !important;">
+                                        <p>Ctrl+Enter Wrap，Enter Send</p>
+                                        <button class="aiccc-btn aiccc-send" type="button">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!--// 谈话 end-->
+
+                <!-- 帮助中心 start-->
+                <div class="chat-win-panel aiccc-help">
+                    <!-- 列表 -->
+                    <div class="chat-win-view chat-view-help">
+                        <section class="chat-win-section chat-win-scroll">
+                            <ul class="chat-help-list" id="help_list_bangzu">
+                                                            </ul>
+                        </section>
+                        <section class="chat-win-section chat-help-foot">
+                            <div class="chat-help-search">
+                                <input type="text" onkeyup="filterList(this.value)" class="chat-search-ipt" placeholder="Search our Help Center...">
+                                <button class="chat-search-btn" type="button"></button>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- 常见问题详情 -->
+                    <div class="chat-win-view chat-view-help-detail">
+                        <section class="chat-win-section aiccc-titbar">
+                            <a href="javascript:" class="chat-btn-back btn-back-help"></a>
+                            <ul class="chat-path-list">
+                                <li class="chat-path-item">FAQ</li>
+                                <li class="chat-path-item help-detail-title"></li>
+                            </ul>
+                        </section>
+                        <section class="chat-win-section chat-win-scroll">
+                            <div class="help-detail-content"></div>
+                        </section>
+                        <section class="chat-win-section help-detail-foot">
+                            <div class="help-detail-updated"></div>
+                        </section>
+                        <!-- loading -->
+                        <!-- 说明：
+                         ========================================
+                         class="aiccc-loading-active":loading显示
+                         -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+                <!--// 帮助中心 end-->
+            </div>
+            <!--// chat-win-body end -->
+
+        </div>
+        <!--// aiccc-win end-->
+
+        <!-- 用户信息输入 start -->
+        <div class="aiccc-userform-win">
+            <div class="userform-win-head">
+                <div class="aiccc-sv-box">
+                    <div class="aiccc-sv-avatar">
+                        <img src="https://biz.ai.cc/assets/img/t/4.png" alt="">
+                    </div>
+                    <div class="aiccc-sv-txt">Please leave your contact information and chat</div>
+                </div>
+                <span class="userform-win-close"></span>
+            </div>
+            <div class="userform-win-body">
+                <div class="aiccc-userform-wrap">
+                    <form action="" onsubmit="return false;" id="form_user_info_save">
+
+                                                    <div class="aiccc-userform-item">
+                                <input type="text" class="aiccc-userform-ipt userform-ipt-company" placeholder="Name/Company">
+                            </div>
+                                                                                                    <div class="aiccc-userform-item">
+                                <input type="email" class="aiccc-userform-ipt userform-ipt-email" placeholder="Email">
+                            </div>
+                                                                            <div class="aiccc-userform-foot">
+                                <button class="aiccc-userform-btn" type="button">Continue</button>
+                            </div>
+                                            </form>
+                </div>
+            </div>
+        </div>
+        <!--// 用户信息输入 end -->
+
+        <!-- 关闭按钮 -->
+        <div class="aiccc-close-btn aiccc-close"></div>
+    </div>
+    <!--// 弹窗主体 end-->
+
+
+    <!-- 操控按钮 start -->
+    <div class="aiccc-controls">
+        <!-- 默认风格 -->
+
+        <section class="aiccc-control-deafult  aiccc-disabled ">
+            <div class="aiccc-control-pop">
+                <div class="aiccc-service-box">
+                    <div class="aiccc-service-avatar">
+                        <img src="https://biz.ai.cc/assets/img/t/4.png" alt="">
+                    </div>
+                    <div class="aiccc-service-intro">
+                        您好，我是拓拓。 请问有什么可以帮到您的？
+                    </div>
+                </div>
+                <span class="aiccc-close-btn aiccc-close-btn-small"></span>
+                <div class="aiccc-control-btn aiccc-control-button">
+                    <i class="control-btn-ico"></i>
+                    <span class="control-btn-txt">立即咨询</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 简单风格 -->
+        <section class="aiccc-control-simple   ">
+
+            <!-- 修改01 (2023-06-21)
+                     =======================
+                     增加了一个div-->
+            <!-- <div class="aiccc-service-avatar">
+                <img src="assets/img/demo/avatar_03.png" alt="">
+            </div> -->
+            <div class="aiccc-avatar-box">
+                <div class="aiccc-service-avatar">
+                    <img src="https://biz.ai.cc/assets/img/t/4.png" alt="">
+                </div>
+                <span class="aiccc-msg-badge" style="display: none;">1</span>
+            </div>
+
+            <div class="aiccc-btn">立即咨询</div>
+        </section>
+
+
+
+    </div>
+    <!--// 操控按钮  end-->
+
+
+</div>
+<!--// aiccc-client end -->
+
+<script type="application/javascript">
+    // 消息弹窗
+    let __msgTimer=null;
+    function achat_showMsg(msg,time=3000){
+        let __msgTxt='';
+        if(msg){__msgTxt=msg;}
+        let __eleClass='aiccc-simple-msg';
+        let __eleActiveClass='aiccc-msg-active';
+        let __msgTime=3000;
+        if(time){__msgTime=time;}
+
+        let __eleNode='.'+__eleClass;
+        let __msgRoot=document.querySelector('.aiccc-client');
+        let __msgParent=document.querySelector('.aiccc-wrap');
+
+        function removeEle (e) {
+            if (e) {
+                let _e = e.parentNode.removeChild(e);
+                return _e;
+            }
+            return undefined;
+        }
+
+        // 清除setTimeout
+        if(__msgTimer){
+            clearTimeout(__msgTimer)
+        }
+
+        // 清空原有消息
+        if(document.body.querySelectorAll(__eleNode).length){
+            let msgNodes=document.body.querySelectorAll(__eleNode);
+            let msgLen=msgNodes.length;
+            for(let i=0;i<msgLen;i++){
+                msgNodes[i].classList.remove(__eleActiveClass);
+                removeEle(msgNodes[i])
+            }
+        }
+
+        let __msgBox=document.createElement("div");
+        __msgBox.classList.add(__eleClass);
+        let __msgBoxClose=document.createElement("span");
+        __msgBoxClose.classList.add('aiccc-msg-close');
+
+        // 加载消息
+        setTimeout(function(){
+            __msgCont='<div class="aiccc-msg-pop"> '+__msgTxt+' </div>';
+            __msgBox.innerHTML=__msgCont;
+            __msgBox.appendChild(__msgBoxClose);
+            __msgParent.appendChild(__msgBox);
+            setTimeout(function(){
+                __msgBox.classList.add(__eleActiveClass);
+            },50)
+        },50)
+
+        // 自动关闭消息提示
+        __msgTimer=setTimeout(function(){
+            __msgBox.classList.remove(__eleActiveClass);
+            setTimeout(function(){
+                if(__msgBox.nodeType==1){
+                    removeEle(document.querySelector(__eleNode));
+                }
+            },200)
+        },time)
+
+        // 点击按钮关闭消息提示
+        __msgBoxClose.addEventListener('click',function(){
+            __msgBox.classList.remove(__eleActiveClass);
+            setTimeout(function(){
+                if(__msgBox.nodeType==1){
+                    removeEle(document.querySelector(__eleNode));
+                }
+            },200)
+        })
+    }
+
+    function filterList(searchTerm) {
+        const list = document.getElementById('help_list_bangzu');
+        const items = Array.from(list.getElementsByTagName('li'));
+
+        items.forEach(function(item) {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    let ispppppppppp = 0;
+    function qiehuanrengongfuwu(t){
+        ispppppppppp = ispppppppppp ? 0 :1;
+        if(ispppppppppp){
+            t.innerText = 'Access manual service';
+        }else {
+            t.innerText = 'Online Service';
+        }
+    }
+
+
+    (function(){
+
+        try {
+            var __aicccWrap=document.querySelector('.aiccc-wrap');
+            var __userformClose=__aicccWrap.querySelector('.userform-win-close');
+            // __aicccWrap.classList.add('aiccc-userform-active');
+            __userformClose.addEventListener('click',function(){
+                __aicccWrap.classList.remove('aiccc-userform-active');
+            })
+        }catch (e) {
+            console.error(e);
+        }
+
+
+        try {
+            // <!-- 新增JS 2023-07-05-->
+            let __chatMayBar=document.querySelector('.chat-may-bar')
+            let	__mayBarHoverStop;
+            let __chatMayItem=__chatMayBar.getElementsByTagName('li');
+            console.log('Len:'+__chatMayItem.length);
+            for(let __i=0;__i<__chatMayItem.length;__i++){
+                __chatMayItem[__i].addEventListener('mouseover',function(){
+                    __mayBarHoverStop= setTimeout(function(){
+                        __chatMayBar.classList.add('chat-may-bar-hover');
+                    },60);
+                })
+            }
+            __chatMayBar.addEventListener('mouseleave',function(){
+                setTimeout(function(){
+                    __chatMayBar.classList.remove('chat-may-bar-hover');
+                },60);
+            })
+            // <!-- end 新增JS 2023-07-05-->
+        }catch (e) {
+            console.log(e);
+        }
+
+
+        var __chatClient=document.querySelector('.aiccc-client');
+        if(!__chatClient){
+            return false;
+        }
+        __chatClient.addEventListener('click',function(e){
+            e.stopPropagation();
+        })
+
+        // 打开主窗口
+        var __controlSimple=__chatClient.querySelector('.aiccc-control-simple');
+        __controlSimple.addEventListener('click',function(){
+            __chatClient.classList.add('aiccc-active');
+            $('.aiccc-controls .aiccc-msg-badge').html('0').hide();
+        })
+
+        // 关闭主窗口
+        var __chatCloseBtn=__chatClient.querySelector('.aiccc-close');
+        __chatCloseBtn.addEventListener('click',function(){
+            __chatClient.classList.remove('aiccc-active');
+        })
+
+
+// 打开客服介绍
+        var __controlDefault=__chatClient.querySelector('.aiccc-control-deafult'),
+            __controlDefaultBtn=__controlDefault.querySelector('.aiccc-control-button'),
+            __controlDefaultclose=__controlDefault.querySelector('.aiccc-close-btn-small');
+        // var	btnHoverStop;
+        // __controlDefaultBtn.addEventListener('mouseover',function(){
+        //     btnHoverStop= setTimeout(function(){
+        //         __controlDefault.classList.add('aiccc-control-deafult-active');
+        //     },100);
+        // })
+        // __controlDefaultBtn.addEventListener('mouseout',function(){
+        //     clearTimeout(btnHoverStop);
+        // })
+        // 关闭客服介绍
+        // __controlDefaultclose.addEventListener('click',function(){
+        //     __controlDefault.classList.remove('aiccc-control-deafult-active');
+        // })
+        // // 点击空白处,关闭客服介绍
+        // document.addEventListener('click',function(){
+        //     if(!__chatClient.classList.contains('aiccc-active')){
+        //         __controlDefault.classList.remove('aiccc-control-deafult-active');
+        //     }
+        // })
+        // 点击立即咨询, 打开聊天窗口
+        var __controlBtnDefault=__chatClient.querySelector('.aiccc-control-button');
+        __controlBtnDefault.addEventListener('click',function(){
+            __chatClient.classList.add('aiccc-active');
+            $('.aiccc-controls .aiccc-msg-badge').html('0').hide();
+            goscrollTop(1);
+        })
+
+
+// 快捷输入
+        var __chatEditor=__chatClient.querySelector('.aiccc-editor'),
+            __chatEditorTextArea=__chatEditor.querySelector('.aiccc-textarea'),
+            __mayInput=__chatClient.querySelector('.chat-may-input'),
+            __mayItems=__mayInput.querySelectorAll('.chat-may-item');
+        for(var i=0;i<__mayItems.length;i++){
+            __mayItems[i].onclick=function(){
+                __chatEditorTextArea.value=this.getAttribute('data-txt');
+            }
+        }
+
+
+        var __chatEditTxt = document.querySelector('.aiccc-textarea');
+        __chatEditTxt.addEventListener('input',function(e){
+            __chatEditTxt.style.setProperty('height', '4.5em', 'important');
+            if(window.innerWidth && window.innerWidth<=640){
+                __chatEditTxt.style.setProperty('height', '2.2em', 'important');
+            }
+            __chatEditTxt.style.setProperty('height', e.target.scrollHeight+'px', 'important');
+        })
+
+
+
+
+        try {
+            // 返回帮助中心列表
+            var __helpBack=__chatClient.querySelector('.btn-back-help');
+            var __helpTab=__chatClient.querySelector('.aiccc-tab-help');
+            __helpBack.addEventListener('click',function(){
+                __helpWrap.classList.remove('help-detail-active');
+            })
+            __helpTab.addEventListener('click',function(){
+                __helpWrap.classList.remove('help-detail-active');
+            })
+        }catch (e) {
+
+        }
+
+
+        // 帮助中心-切换到详情
+        var __helpWrap=__chatClient.querySelector('.aiccc-help');
+        var helpItems=__helpWrap.querySelectorAll('.chat-help-item');
+        for(var i=0;i<helpItems.length;i++){
+            helpItems[i].onclick=function(e){
+                // 切换数据
+                __helpWrap.querySelector('.help-detail-title').innerHTML = this.querySelector('h4').innerText;
+                __helpWrap.querySelector('.help-detail-content').innerHTML = this.querySelector('.chat-help-item-desc').innerHTML;
+                __helpWrap.querySelector('.help-detail-updated').innerHTML = this.querySelector('.chat-help-item-update-time').innerHTML;
+
+                __helpWrap.classList.add('help-detail-active');
+            }
+        }
+
+// 选项卡切换
+        achat_tabCont('.aiccc-head-tabs','li','.chat-win-body','.chat-win-panel');
+        __controlSimple.addEventListener('click',function(){
+            achat_resetTabs();
+        })
+        __controlDefaultBtn.addEventListener('click',function(){
+            achat_resetTabs();
+        })
+
+
+
+// 选项卡
+        function achat_tabCont(tabs,tabItem,cont,panel){
+            var __tabs=document.querySelector(tabs),
+                __tab=__tabs.querySelectorAll(tabItem),
+                tabLen=__tab.length,
+                _cont=document.querySelector(cont),
+                _panel=_cont.querySelectorAll(panel),
+                panelLen=_panel.length;
+            for(var i=0;i<tabLen;i++){
+                __tab[i].setAttribute('index', i);
+                __tab[i].onclick=function(){
+                    var curIndex=this.getAttribute('index');
+                    for(var i=0;i<tabLen;i++){
+                        __tab[i].classList.remove('aiccc-tab-active');
+                    }
+                    this.classList.add('aiccc-tab-active');
+                    for(var i=0;i<panelLen;i++){
+                        _panel[i].classList.remove('aiccc-panel-active');
+                    }
+                    _panel[curIndex].classList.add('aiccc-panel-active');
+                }
+            }
+        }
+
+        // 选项卡重置
+        function achat_resetTabs(){
+            // 重置TAB
+            var __winTabBox=__chatClient.querySelector('.aiccc-head-tabs'),
+                __winTabItems=__winTabBox.querySelectorAll('.aiccc-tab-item');
+            for(var i=0;i<__winTabItems.length;i++){
+                if(i==0){
+                    __winTabItems[i].classList.add('aiccc-tab-active');
+                }
+                else{
+                    __winTabItems[i].classList.remove('aiccc-tab-active');
+                }
+            }
+            // 重置内容
+            var __winpanelBox=__chatClient.querySelector('.chat-win-body'),
+                __winpanelItems=__winpanelBox.querySelectorAll('.chat-win-panel');
+            for(var i=0;i<__winpanelItems.length;i++){
+                if(i==0){
+                    __winpanelItems[i].classList.add('aiccc-panel-active');
+                }
+                else{
+                    __winpanelItems[i].classList.remove('aiccc-panel-active');
+                }
+            }
+        }
+
+
+        try {
+            // 保存 用户信息
+            let form_user_info_save = document.getElementById('form_user_info_save');
+            // 绑定点击事件
+            form_user_info_save.querySelector('button').addEventListener('click',function (e){
+
+                let user = {
+                    company:'',
+                    mobile:'',
+                    email:''
+                };
+                let is = false;
+
+                                let company = form_user_info_save.querySelector('.userform-ipt-company').value;
+                if(company.length > 100 || company.length < 1){
+                    achat_showMsg('Please enter your name with no more than 100 characters');
+                    return;
+                }
+                user.company = company;
+                is = 1;
+                                
+                                let email = form_user_info_save.querySelector('.userform-ipt-email').value;
+                if(!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email))){
+                    achat_showMsg('Please input the correct email address');
+                    return;
+                }
+                user.email = email;
+                is = 1;
+                
+                if(is){
+                    window.localStorage.setItem('aicc_chat_local_user_867',JSON.stringify(user));
+                    // 关闭
+                    __userformClose.click();
+                }
+
+                // 模拟点击发送
+                aicc_input_message.querySelector('button').click();
+            });
+        }catch (e) {
+            console.log('save user error',e);
+        }
+
+
+        // 获取用户
+        function getUser(t=0){
+            let local_user_info = window.localStorage.getItem('aicc_chat_local_user_867');
+            if(local_user_info){
+                local_user_info = JSON.parse(local_user_info);
+            }else {
+                if(t===1) return null;
+                local_user_info = {
+                    company:'',
+                    mobile:'',
+                    email:''
+                }
+            }
+            return local_user_info;
+        }
+
+
+        // 发送块
+        let aicc_input_message = document.getElementById('aicc_input_message');
+        // key
+        aicc_input_message.querySelector('textarea').addEventListener('keydown',function (event) {
+            if(event.key === 'Enter'){
+                event.preventDefault(); // 阻止默认的换行行为
+            }
+            // 组合
+            if(event.key === 'Enter' && (event.shiftKey || event.ctrlKey || event.altKey)){
+                if(event.ctrlKey){
+                    const textarea = event.target;
+                    const { selectionStart, selectionEnd, value } = textarea;
+                    const newValue = value.slice(0, selectionStart) + '\\n' + value.slice(selectionEnd);
+                    textarea.value = newValue; // 将修改后的值设置回textarea
+                }
+            }
+            else if (event.key === 'Enter'){
+                aicc_input_message.querySelector('button').click();
+            }
+
+        });
+
+        // 监听 发送按钮
+        let send_btn_is_run = false;// 是否正则发送
+        aicc_input_message.querySelector('button').addEventListener('click',function (e) {
+            let thatBtnDom = this;
+            // 待发送的消息
+            let msg = aicc_input_message.querySelector('textarea').value.trim();
+            if(msg.length<1 || msg.length > 200){
+                achat_showMsg('Please enter the message and not more than 200 characters');
+                return;
+            }
+
+            let user = getUser();
+
+                        if(!user.company){
+                // achat_showMsg('请输入姓名');
+                document.querySelector('.aiccc-wrap').classList.add('aiccc-userform-active');
+                return;
+            }
+                                                        if(!user.email){
+                // achat_showMsg('请输入邮箱地址');
+                document.querySelector('.aiccc-wrap').classList.add('aiccc-userform-active');
+                return;
+            }
+            
+            // 禁止点击按钮
+            // $(thatBtnDom).attr('disabled',true);
+            if(send_btn_is_run){
+                achat_showMsg('Please wait for the customer service to answer');
+                return;
+            }
+            send_btn_is_run = true;
+
+            const  msg_rand_str = parseInt(Math.random()*10000000);
+            message({
+                id:parseInt(Math.random()*1000000),
+                rand_str:msg_rand_str,
+                content:msg,
+                created_at:new Date(),
+                from:1
+            });
+            // 清除 内容
+            aicc_input_message.querySelector('textarea').value = '';
+            goscrollTop();
+
+            // 发送
+            getHttp('send',{
+                nickname: user.company,
+                mobile: user.mobile,
+                email: user.email,
+                content: msg,
+                isPerson: ispppppppppp,
+                randstr:msg_rand_str
+            },response  => {
+
+                let theMsg = 0;
+                let decoder = new TextDecoder('utf-8');
+                // 创建一个 ReadableStream 对象
+                let stream = response.body.getReader();
+                // 定义一个函数，用于递归读取数据流
+                function read(){
+                    stream.read().then(result=> {
+                        // 如果数据流已经读取完毕，返回
+                        if (result.done) {
+                            // 启用按钮
+                            // $(thatBtnDom).attr('disabled',false);
+                            send_btn_is_run = false;
+                            message(theMsg,true);
+
+                            // 替换html
+                            $('#msg_item_'+theMsg.id).html(mark_toHtml(theMsg.content));
+                            return;
+                        }
+                        // 解码数据流并将其添加到页面中
+                        let text = decoder.decode(result.value, {stream: true});
+                        console.log(text);
+
+                        // 是否转发
+                        let textJson = null;
+                        try {
+                            textJson = JSON.parse(text.trim());
+                        }catch (e) {}
+                        // 第一次 输出必须是一个json
+                        if(textJson !== null && typeof textJson === 'object'){
+
+                            if(textJson.erMsg){
+                                achat_showMsg(textJson.erMsg);
+                                return;
+                            }
+                            if(textJson.status!==200 && textJson.message){
+                                achat_showMsg(textJson.message);
+                                return;
+                            }
+
+                            // 发送的消息
+                            if(textJson.data && textJson.data.quiz){
+                                message(textJson.data.quiz);
+                                send_btn_is_run = false;
+                            }
+                            // 接收的消息
+                            if(textJson.data && typeof textJson.data.ai_replay === 'object' && textJson.data.ai_replay.id){
+                                send_btn_is_run = true;
+                                message(textJson.data.ai_replay);
+                                theMsg = textJson.data.ai_replay;
+                                $('#msg_item_'+theMsg.id).html('<div class="rotate-effect"></div>');
+                                console.log('已加载');
+                            }
+                        }else {
+                            $('#msg_item_'+theMsg.id).find('.rotate-effect').remove();
+
+                            // 追加内容
+                            theMsg.content += text;
+                            message(theMsg,true);
+                            $('#msg_item_'+theMsg.id).html(mark_toHtml(theMsg.content));
+                            goscrollTop();
+                        }
+
+                        goscrollTop();
+
+                        read();
+                    });
+                }
+                // 开始递归读取数据流
+                read();
+                // 有用户
+                window.is_user_ok = true;
+            });
+
+        })
+
+
+        // 请求服务器
+        function getHttp(action,data,call){
+            data._token = 'v21KI6Y3MWzjfdGJlozU3nZydLeTo59aL5TQMPCr';
+            data.timer = new Date();
+            fetch('https://biz.ai.cc/api/web/iframe/T35cTHN7CnBh', {
+                method: 'POST',
+                headers: {
+                    'access-control-allow-methods': 'POST',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': data._token,
+                    'X-mouthed': action,
+                    'X-LOCAL-URL': window.location.href,
+                    'X-AUTH-UUID': window.localStorage.getItem('aicc_uuid_867')
+                },
+                body: JSON.stringify(data)
+                // ,mode: 'no-cors'
+            })
+                .then(response => {
+                    call(response);
+                })
+                .catch(error => {
+                    // achat_showMsg('请求错误');
+                })
+
+
+        }
+
+        // 设置唯一验证
+        if(!window.localStorage.getItem('aicc_uuid_867')){
+            window.localStorage.setItem('aicc_uuid_867', 'ySSdxsD6mygICnMKucgsbW1723186095');
+        }
+
+
+        function message(msg,t=false){
+            msg_list_append(msg);
+            return 1;
+        }
+
+        // 时间
+        function getTimer(timer=''){
+            const da = new Date(timer);
+            return da.getFullYear()+'-'+nnm(da.getMonth()+1)+'-'+nnm(da.getDate())+' '+nnm(da.getHours())+':'+nnm(da.getMinutes())+':'+nnm(da.getSeconds());
+        }
+        function nnm(n){
+            return n > 9 ? n : '0'+n;
+        }
+
+        function msg_list_append(msg,is=true){
+
+            let msg_id = msg.rand_str ? msg.rand_str : msg.id;
+
+            if($('#msg_item_'+msg_id).length>0){
+                return;
+            }
+            if(typeof msg !== 'object'){
+                return;
+            }
+            if(typeof msg.content === 'undefined'){
+                return;
+            }
+            let timer = getTimer(msg.created_at);
+            // 消息
+            let html = '<li class="aiccc-group '+(msg.from?'':'aiccc-item-reply')+'">' +
+                '<div class="aiccc-item">' +
+                '<div class="aiccc-item-hd">' +
+                '<div class="aiccc-item-avatar">' +
+                '<img class="bg_color_zt" src="'+(msg.from?'https://biz.ai.cc/aichatiframe/assets/img/demo/user_avatar.png':'https://biz.ai.cc/assets/img/t/4.png')+'"></div>' +
+                '<div class="aiccc-item-meta">' +
+                '<span class="aiccc-item-name">'+(msg.from?'Me':'拓拓')+'</span>' +
+                '<span class="aiccc-item-time">'+timer+'</span>' +
+                '</div>' +
+                '</div>' +
+                '<div class="aiccc-item-bd">' +
+                '<div class="aiccc-item-cont" id="msg_item_'+msg_id+'">'+mark_toHtml(msg.content)+'</div>' +
+                '</div>' +
+                '</div>' +
+                '</li>';
+
+            $('#aiccc-lists-item').append(html);
+            // 滚东条
+            goscrollTop();
+
+
+        }
+
+
+
+        function mark_toHtml(text){
+            try {
+                text = text.replace(/(chat\\s*-?\\s*)?gpt\\d?/ig,'\\\\*\\\\*').replace(/openai/ig,'\\\\*\\\\*\\\\*\\\\*').replaceAll('(c)','\\\\(c\\\\)').replaceAll('(C)','\\\\(C\\\\)');
+                // 图片
+                let html = text;
+                if (html){
+                    let all = [];
+                    // 图片没有加!的
+                    let img_1 = html.match(/\\!\\[.*\\]\\(https?:\\/\\/[^\\s]*(?:\\.jpg|\\.jpeg|\\.png|\\.gif)\\)/gi);
+                    // console.log(img_1);
+                    if(img_1){
+                        img_1.forEach(function (v,k){
+                            let t = '{$all_img_'+k+'}';
+                            html = html.replaceAll(v,t);
+                            // s 查找 t 替换
+                            all.push({s:t,t:v});
+                        });
+                    }
+                    let img_2 = html.match(/\\[.*\\]\\(https?:\\/\\/[^\\s]*(?:\\.jpg|\\.jpeg|\\.png|\\.gif)\\)/gi);
+                    // console.log(img_2);
+                    if(img_2){
+                        img_2.forEach(function (v,k){
+                            let t = '{$all_img_2_'+k+'}';
+                            html = html.replaceAll(v,t);
+                            // s 查找 t 替换
+                            all.push({s:t,t:'!'+v});
+                        });
+                    }
+
+                    html = html.split('.jpg').join('.jpg ');
+                    html = html.split('.jpeg').join('.jpeg ');
+                    html = html.split('.png').join('.png ');
+                    html = html.split('.gif').join('.gif ');
+                    let html_r = html.match(/https?:\\/\\/[^\\s]*(?:\\.jpg|\\.jpeg|\\.png|\\.gif)/gi);
+                    if(html_r){
+                        const set = new Set(html_r);
+                        html_r = Array.from(set);
+
+                        for (const rk in html_r) {
+                            all.push({s:html_r[rk],t:'![Picture]('+html_r[rk]+')'});
+                        }
+                    }
+
+                    all.forEach(function (v){
+                        html = html.replaceAll(v.s,v.t);
+                    });
+                    text = html;
+                }
+                return window.markdownit().render(text);
+            }catch (e) {
+                return text;
+            }
+
+        }
+
+        // 是否滚动到底部
+        let gundongtaioshubiao = 0;
+        function goscrollTop(is=false){
+            if(is||!gundongtaioshubiao){
+                $('.aiccc-client .chat-page-wrap').scrollTop(99999999);
+            }
+        }
+        // $('#aiccc-lists-item').mousewheel(function (e){
+        //    console.log(1);
+        // });
+        document.addEventListener('wheel', function(event) {
+            // console.log(event);
+            // if (event.button == 1) {
+            //中键滚动事件处理逻辑
+            if($(event.target).parents('#aiccc-lists-item').length>0){
+                gundongtaioshubiao = 1;
+                var scrollWrapper = $('.aiccc-client .chat-page-wrap');
+                var scrollTop = scrollWrapper.scrollTop();
+                var scrollHeight = scrollWrapper.prop('scrollHeight');
+                var clientHeight = scrollWrapper.prop('clientHeight');
+                if (scrollTop + clientHeight+5 >= scrollHeight) {
+                    gundongtaioshubiao = 0;
+                }
+                console.log(gundongtaioshubiao);
+            }
+            // }
+        });
+
+        // 定时任务
+        window.is_user_ok = true;
+        function timer_run_msg(id=0){
+            if(!window.is_user_ok){
+                return ;
+            }
+
+            getHttp('newmsg',{msgid:id},function (response) {
+                let decoder = new TextDecoder('utf-8');
+                // 创建一个 ReadableStream 对象
+                let stream = response.body.getReader();
+                // 定义一个函数，用于递归读取数据流
+                function read(){
+                    stream.read().then(result=> {
+                        // 如果数据流已经读取完毕，返回
+                        if (result.done) {
+                            return;
+                        }
+                        // 解码数据流并将其添加到页面中
+                        let text = decoder.decode(result.value, {stream: true});
+
+                        // 是否转发
+                        let textJson = null;
+                        try {
+                            textJson = JSON.parse(text.trim());
+                        }catch (e) {}
+                        // 第一次 输出必须是一个json
+                        if(textJson !== null){
+
+                            if(textJson.erMsg){
+                                // achat_showMsg(textJson.erMsg);
+                            }else {
+                                if(textJson.data && textJson.data.no_user){
+                                    window.is_user_ok = false;
+                                }else {
+                                    textJson.data.forEach((v)=>{
+
+                                        aicc_last_history_msg_id = v.id;
+                                        // 计数
+                                        if(message(v,true) && $('.aiccc-client.aiccc-active').length){
+                                            let num = parseInt($('.aiccc-controls .aiccc-msg-badge').text());
+                                            $('.aiccc-controls .aiccc-msg-badge').html(num+1).show();
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+                        read();
+                    });
+                }
+                // 开始递归读取数据流
+                read();
+            });
+        }
+
+        // 欢迎语
+                message({"id":0,"content":"\\u60a8\\u597d\\uff0c\\u6211\\u662f\\u62d3\\u62d3\\u3002 \\u8bf7\\u95ee\\u6709\\u4ec0\\u4e48\\u53ef\\u4ee5\\u5e2e\\u5230\\u60a8\\u7684\\uff1f","created_at":"2024-08-09 14:48:15","from":0},false);
+        
+
+        let aicc_last_history_msg_id = 0;
+        timer_run_msg();
+        setInterval(function (){
+            timer_run_msg(aicc_last_history_msg_id);
+        },10000);
+
+    })()
+
+
+    
+
+</script>
+<style>
+    :root{
+        --threen_color:#059ae0
+    }
+    .bg_color_zt{background-color:var(--threen_color)}
+    .aiccc-item-cont a{
+        color: #000fff;
+        text-decoration: underline;
+    }
+
+</style>
+
+`;
+                        document.body.appendChild(divTag);
+
+
+                        var scriptTags = document.querySelector(".aicc-kf").getElementsByTagName('script');
+                        for (var i = 0; i < scriptTags.length; i++) {
+                          eval(scriptTags[i].innerHTML);
+                        }
+                    }
+            };
+            function aicc_reload_check (){
+            console.log("load jquery")
+        if(typeof $ !== 'function'){
+            setTimeout('aicc_reload_check()',500);
+        }else {
+            aicc_ifarem_app_init();
+        }
+    }
+    aicc_reload_check();
+                
