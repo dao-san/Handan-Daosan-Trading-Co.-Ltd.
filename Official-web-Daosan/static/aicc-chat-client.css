@@ -1,0 +1,571 @@
+@charset "utf-8";
+/*
+ * AICC聊天弹窗
+ * aicc-chat: aiccc
+*/
+
+
+/* 重置css-避免受调用站点影响样式 */
+/* 2023-07-08 */
+.aiccc-client *,.aiccc-client::after,.aiccc-client::before,.aiccc-client:after,.aiccc-client:before {
+    background-attachment: scroll !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    bottom: auto !important;
+    clear: none !important;
+    clip: auto !important;
+    color: inherit !important;
+    counter-increment: none !important;
+    counter-reset: none !important;
+    cursor: auto !important;
+    direction: inherit !important;
+    display: inline !important;
+    float: none !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-style: inherit !important;
+    font-weight: inherit !important;
+    height: auto !important;
+    left: auto !important;
+    letter-spacing: normal !important;
+    line-height: inherit !important;
+    list-style-type: inherit !important;
+    list-style-position: outside !important;
+    list-style-image: none !important;
+    max-height: none !important;
+    max-width: none !important;
+    min-height: 0px !important;
+    min-width: 0px !important;
+    position: static !important;
+    quotes: "" "" !important;
+    right: auto !important;
+    table-layout: auto !important;
+    text-align: inherit !important;
+    text-indent: 0px !important;
+    text-transform: none !important;
+    text-rendering: auto !important;
+    top: auto !important;
+    unicode-bidi: normal !important;
+    vertical-align: baseline !important;
+    visibility: inherit !important;
+    white-space-collapse: collapse !important;
+    text-wrap: wrap !important;
+    width: auto !important;
+    word-spacing: normal !important;
+    z-index: auto !important;
+    background-origin: padding-box !important;
+    background-clip: border-box !important;
+    background-size: auto !important;
+    box-shadow: none !important;
+    box-sizing: content-box !important;
+    column-count: auto !important;
+    column-gap: normal !important;
+    column-width: auto !important;
+    -webkit-text-fill-color: currentcolor !important;
+    -webkit-tap-highlight-color: transparent !important;
+    font-feature-settings: normal !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    hyphens: manual !important;
+    hyphenate-character: "‐" !important;
+    perspective: none !important;
+    perspective-origin: 50% 50% !important;
+    backface-visibility: visible !important;
+    text-shadow: none !important;
+    word-break: normal !important;
+    background-position: 0px 0px !important;
+    background-repeat: repeat !important;
+    border-color: currentcolor !important;
+    border-style: none !important;
+    border-width: medium !important;
+    font-variant: normal !important;
+    margin: 0px !important;
+    outline: 0px !important;
+    padding: 0px !important;
+    text-decoration: inherit !important;
+    border-image: none 100% / 1 / 0 stretch !important;
+    border-radius: 0px !important;
+    column-rule: medium none rgb(0, 0, 0) !important;
+    transition: all 0s ease 0s !important;
+}
+.aiccc-client section,.aiccc-client div,.aiccc-client form,.aiccc-client ol,.aiccc-client ul,.aiccc-client li,.aiccc-client p{display: block!important;}
+.aiccc-client a,.aiccc-client a *{cursor: pointer!important;}
+:root{
+    --threen_color:#0091ff;
+    --threen_color_light:#35caf5;
+}
+
+/* 全局 */
+.aiccc-client,.aiccc-client a {color: #333!important;}
+.aiccc-client {font-size: 12px!important;line-height: 1.5!important;position: fixed!important;z-index: 1000000!important;right: 25px!important;bottom: 25px!important; }
+.aiccc-client *{font-family: 'Microsoft YaHei',Arial, Helvetica,sans-serif!important;}
+.aiccc-client ul,.aiccc-client li,.aiccc-client h1,.aiccc-client h2,.aiccc-client h3,.aiccc-client h4,.aiccc-client h5,.aiccc-client p{margin: 0!important;padding: 0!important;}
+.aiccc-client ul{list-style:none outside none!important;}
+.aiccc-client a{text-decoration: none!important;}
+.aiccc-client *{box-sizing: border-box!important;}
+.aiccc-client ::selection{background-color: #d1e3fd!important;}
+.aiccc-client .aiccc-item-reply .aiccc-item-cont::selection{background-color: rgba(255,255,255,.8)!important;color: #333!important;}
+.aiccc-client ::-webkit-input-placeholder{color:#acbbcf!important;}
+.aiccc-client ::-moz-placeholder{color:#acbbcf!important;}
+.aiccc-client :-ms-input-placeholder{color:#acbbcf!important;}
+.aiccc-client :-moz-placeholder{color:#acbbcf!important;}
+
+
+
+/* -------------------- 属性 -------------------- */
+
+/* 字体大小 */
+.aiccc-client .aiccc-head-tabs .aiccc-tab-txt,
+.aiccc-client .aiccc-help .chat-help-item-tit,
+.aiccc-client .aiccc-editor .aiccc-textarea,
+.aiccc-client .aiccc-help .chat-search-ipt,
+.aiccc-client .aiccc-titbar .chat-path-list,
+.aiccc-client .chat-view-help-detail .help-detail-foot{font-size: 14px!important;}
+
+/* 滚动条美化 */
+.aiccc-client .aiccc-page .chat-page-body{}
+.aiccc-client ::-webkit-scrollbar { width:6px!important; height:6px!important;}
+.aiccc-client ::-webkit-scrollbar-thumb {background:var(--threen_color)!important;border-radius: 6px!important;}
+.aiccc-client ::-webkit-scrollbar-thumb:hover { background:var(--threen_color)!important;}
+
+/* 颜色 */
+.aiccc-client .aiccc-color-primary{color: var(--threen_color)!important;}
+
+/* 隐藏 */
+body .aiccc-disabled{display: none!important;}
+
+/* 清除点击阴影 */
+.aiccc-client .aiccc-close-btn,.aiccc-client .aiccc-controls .aiccc-control-btn,.aiccc-client .aiccc-control-btn .control-btn-ico,.aiccc-client a,.aiccc-client .aiccc-control-simple .aiccc-service-avatar,.aiccc-client .aiccc-page .chat-may-item,.aiccc-client .aiccc-avatar-box,.aiccc-client .aiccc-simple-msg .aiccc-msg-close{-webkit-tap-highlight-color:transparent!important;}
+
+
+/* -------------------- 模块 -------------------- */
+
+/* 布局 */
+.aiccc-client .aiccc-wrap{display:none !important;position: absolute!important;right: 0!important;bottom: 0!important;opacity: 0!important;visibility: hidden!important;transform: translateY(20px)!important;transition: all .25s ease!important;z-index: 3!important;}
+.aiccc-client .aiccc-wrap{width: 500px!important;height: 650px!important; min-height: 72vh!important;max-height: calc(95vh - 110px)!important; pointer-events: none!important; }
+.aiccc-client .aiccc-win{width: 100%!important; height: 100%!important; position: absolute!important;right: 0!important;bottom: 80px!important;display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;-webkit-box-orient:vertical!important;-webkit-box-direction:normal!important;-webkit-flex-direction:column!important;flex-direction:column!important;}
+.aiccc-client .aiccc-win .chat-win-head{width: 100%!important;display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;-webkit-flex-wrap:wrap!important;flex-wrap:wrap!important;-ms-flex-pack:end!important;justify-content:flex-end!important;position: relative!important;padding-right: 6px!important;}
+.aiccc-client .aiccc-win .chat-win-head .chat-page-link{display: inline-block!important;font-size: 13px!important;padding: .5em!important;margin-left: .15em!important;}
+.aiccc-client .aiccc-win .chat-win-head .chat-page-link .link-ico-full{display: inline-block!important;width: 21px!important;height: 21px!important;vertical-align: middle!important;background-repeat: no-repeat!important;background-position: center!important; background-size: contain!important; background-image: url(./img/ico_full_screen.svg)!important;}
+.aiccc-client .aiccc-win .chat-win-body{background-color: #fff!important;border-top: 8px solid var(--threen_color)!important;border-radius: 6px!important;box-shadow: 0 8px 10px rgba(0,0,0,.2)!important;-webkit-box-flex:1!important;-webkit-flex:1!important;flex:1!important;min-width:0!important;min-height: 0!important;padding: 10px!important;display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;min-height: 200px!important;position: relative!important;}
+.aiccc-client .aiccc-win .chat-win-panel{width: 100%!important;height: 100%!important;position: relative!important;display: none!important;position: absolute!important;left: 0!important;top: 0!important;padding: 10px!important;}
+.aiccc-client .aiccc-win .aiccc-panel-active{display: block!important;}
+.aiccc-client .aiccc-win .chat-win-view{display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;-webkit-box-orient:vertical!important;-webkit-box-direction:normal!important;-webkit-flex-direction:column!important;flex-direction:column!important;height: 100%!important;z-index: 1!important;}
+.aiccc-client .aiccc-win .chat-win-section{}
+.aiccc-client .aiccc-win .chat-win-scroll{-webkit-box-flex:1!important;-webkit-flex:1!important;flex:1!important;min-width:0!important;min-height: 0!important;overflow: hidden!important;overflow-y: auto!important;padding-right: 10px!important;margin-right: -5px!important;}
+.aiccc-active .aiccc-wrap {display:block !important;opacity: 1!important;visibility: visible!important;transform: none!important;transition-delay: .3s!important;pointer-events: auto!important;}
+
+/* 按钮 */
+.aiccc-client .aiccc-btn{display: inline-block!important;vertical-align: middle!important; text-align: center!important; color: #fff!important; line-height: 1.5!important; background-color: var(--threen_color)!important;border-radius: 5px!important;padding: .5em 1em!important;border: 0!important;outline: 0!important;cursor: pointer!important;transition: all .2s ease!important;-webkit-appearance:none!important; transform: scale(1)!important;}
+.aiccc-client .aiccc-btn::before{content: ''!important;display: block!important;width: 100%!important;height: 100%!important;position: absolute!important;left: 0!important;top: 0!important;z-index: -1!important;transition: all .2s ease!important;}
+.aiccc-client .aiccc-btn:hover::before{background-color:rgba(0,0,0,.08)!important;}
+.aiccc-client .aiccc-close-btn{display: inline-block!important;width: 60px!important;height: 60px!important;vertical-align: middle!important; position: absolute!important; right: 0!important;bottom: 0!important; cursor: pointer!important; transition: all .25s ease!important; box-shadow: 0 0 15px rgba(0,0,0,.25)!important; background-color: var(--threen_color)!important;border-radius: 50%!important;}
+.aiccc-client .aiccc-close-btn::before{content: ''!important;display: block!important;width: 130%!important;height: 130%!important;position: absolute!important;left: -15%!important;top: -15%!important;background-color:var(--threen_color_light)!important;opacity: .3!important; border-radius: 50%!important;transform: scale(0)!important; transition: all .4s ease!important;}
+.aiccc-client .aiccc-close-btn:hover::before{background-color:var(--threen_color)!important;opacity: .12!important;transform: none!important;}
+.aiccc-client .aiccc-close-btn::after{content:''!important;display: block!important;width: 100%!important;height: 100%!important; z-index: 2!important; position: absolute!important;left: 0!important;top: 0!important;background-repeat: no-repeat!important;background-position: center!important; background-size: auto 42%!important;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjg2MTIwMTEyNjM5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjU0MjYiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTIgNDE0LjkxN0wxNTYuMTg4IDU5LjAyNGE2OC42NDcgNjguNjQ3IDAgMSAwLTk3LjA4NCA5Ny4wODNMNDE0LjgzNiA1MTIgNTguOTQ0IDg2Ny44MTJhNjguNjQ3IDY4LjY0NyAwIDEgMCA5Ny4wODMgOTcuMDg0TDUxMiA2MDkuMTY0bDM1NS44MTIgMzU1Ljg5MmE2OC42NDcgNjguNjQ3IDAgMSAwIDk3LjA4NC05Ny4wODNMNjA5LjE2NCA1MTJsMzU1Ljg5Mi0zNTUuODEyYTY4LjY0NyA2OC42NDcgMCAxIDAtOTcuMDgzLTk3LjA4NEw1MTIgNDE0LjgzNnoiIGZpbGw9IiNmZmZmZmYiIHAtaWQ9IjU0MjciPjwvcGF0aD48L3N2Zz4=)!important;}
+
+/* Tabs */
+.aiccc-client .aiccc-head-tabs{display: inline-flex!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-item{display: inline-block!important;font-size: 13px!important; min-width: 90px!important;text-align: center!important; padding: .5em 1em!important;background-color: #d1e6ff!important;border-radius: 5px 5px 0 0!important;color: #666!important;cursor: pointer!important;transition: all .1s ease!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-item+.aiccc-tab-item{margin-left: 5px!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-item,.aiccc-client .aiccc-head-tabs .aiccc-tab-item *{cursor: pointer!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-active,.aiccc-client .aiccc-head-tabs .aiccc-tab-active *{cursor: default!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-txt{display: inline!important;vertical-align: middle!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-ico{display: inline-block!important;width: 18px!important;height: 18px!important;background-repeat: no-repeat!important;background-position: center!important;background-size: contain!important;vertical-align: middle!important; margin-right: .8em!important;transition: all .1s ease!important; }
+.aiccc-client .aiccc-head-tabs .aiccc-tab-active{background-color: var(--threen_color)!important;color: #fff!important;}
+.aiccc-client .aiccc-head-tabs .tab-ico-chat{background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAbFBMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaB0FoYAAAAI3RSTlMAQIl/L++xv1xFIg7r6NnLw2cUuJ6VkHJfUzon+N930apsHLK/qSsAAADwSURBVCjPjdLrjoIwEIbhoScOBUFQEFH38N3/Pe6OzXabKTE+P5rQN9M0AL2p/joPthvUuhe3E/5M31l9tEhcROXRVEUpDalI6gWZ1lD0gdwpVo8d95ivYJaXMi7wpEM+8pOhA194Bmaqwgb0fyZyfN8FWKjgjcbDbvFw63jVcWlpA86cR+yY+AxL7ICcIgWg5qzyejPPoSMxlw+HCz+INfL4jqhPPk2NFN94AqspSGP/uzmAlSTy3anKU1OK34KHVgqM6pAOc7ZLUzzpIX5zijS/PYfUJ0nqJv4nwcydyNJormPjRJbW/mUmrzi/EPIPM/M68llT5NYAAAAASUVORK5CYII=)!important;}
+.aiccc-client .aiccc-head-tabs .tab-ico-search{background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAY1BMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZsNe8HAAAAIHRSTlMAsZCGYltH57anbVAT1cO+uaugPRea3dxqLyT28Zd1DLRxUPgAAAC+SURBVCjPjZJXEoMwDERxB0wvIT17/1OGYRIil3HYP82zirXKjukieWsME6qKUWvwUS1DykHEfIpVeamnajw3WOXSDoCihQSlTwBeLUtmvgOcYgUsv/kl0LjNcpouAO8vJcDp26uLNVDvgcEpczUBtxSm2SxWnB0dTcU+pvegqv21uK7IcKkjjZlvSZs2FJ3LBYja8CTsskO9+V+4/DWWc1c8hP0OMyTutgAwJ/jwJ3/e+qfz+1T/NM56SuN6A50pFzIBF6AnAAAAAElFTkSuQmCC)!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-active .tab-ico-chat{background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAkFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+WABnwAAAAL3RSTlMAQInusb+AXCIO2WgwLPHozMO4npJyU0M6E/jfyJeNfHdfSOvn0aqEbGMnJhwYBMUXRk4AAAD3SURBVCjPjdLXcsMgEIXhFUIFW725xrGdXs/7v12yYkLIoot8F8yIf2AYAf3T5nloq/ujmpbia48f3XtQz3fwXETt8VdGvltIkVcvCMQFOQ8I9a4aLDi4vLXb8ZC4AYZSm9f8VdCKDzwAA2V2AulvJtJ83hEYKeKJ3KAq3eax5jF1Q0xvwA3nHRZ0vEdFbIWQohOAK2cV1n05L1oT0+Fie+AzsVxuXxM13tVc4eMTd2Absvx4/J5swRIS+aBVZihPMHvxcjORVaoa/mLO8ZhHs7R1d+69F/57Gr5HEj7VXrwnoTjVIku7cvuRa5GlqRFZME8iSzZ/AZhmTpLsniT4AAAAAElFTkSuQmCC)!important;}
+.aiccc-client .aiccc-head-tabs .aiccc-tab-active .tab-ico-search{background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAkIZiW0fntrCnbRPDvrmqoE89F7Ka3dzY0mok9vGXdVUwLgz2Nob8AAAAwElEQVQoz42SVxKDMAxEwY3eIZDe9v5nDMMkIBtGYf80zyrWytunl/QzY1qhki36MPhqkGvqgyh0KUYFsW6S+pRilE1zAIoWEpTeATi1qiV6XgGfYgX0y/wSSO1mAU0XgPOXGPDp27ONNXCcA4ODZ6sBLhym2e1W8XbvaGrrY3oOksFdi+2KXC+1pnHoWpLxhiK3uQBRtj6Jqp+hnvyPbP6u4y6PbqL6DVMydxsB6Bhe/snvpv58fsH157FXTJTVBzHkGeGEfqAeAAAAAElFTkSuQmCC)!important;}
+
+/* 编辑发布 */
+.aiccc-client .aiccc-editor{position: relative!important;}
+.aiccc-client .aiccc-editor .aiccc-edit-cell{display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;align-items: flex-end!important;}
+.aiccc-client .aiccc-editor .aiccc-edit-cell-cont{-webkit-box-flex:1!important;-webkit-flex:1!important;flex:1!important;min-width:0!important;}
+.aiccc-client .aiccc-editor .aiccc-edit-cell-ft{padding-left: .5em!important;}
+.aiccc-client .aiccc-editor .aiccc-edit-cell-ft p{color:#9b9b9b!important;font-size: 12px!important;padding: 0!important;position: absolute!important;bottom: 100%!important; white-space: nowrap!important; width: 160px!important;right: 0!important;opacity: 0!important;visibility: hidden!important;transition: all .3s ease!important;}
+.aiccc-client .aiccc-editor .aiccc-edit-cell-ft:hover p{opacity: 1!important;visibility: visible!important;}
+.aiccc-client .aiccc-editor .aiccc-edit-cell-ft p{text-align: center!important;padding-bottom: .3em!important;}
+.aiccc-client .aiccc-editor .aiccc-textarea{display: block!important; color: #333!important; width: 100%!important; height: 4.5em!important; line-height: 1.5em!important;max-height:15em!important; line-height: 1.5em!important; padding: 0 1em 0 0!important;border: 0!important;resize: none!important;outline: 0!important;letter-spacing: 0!important;}
+.aiccc-client .aiccc-editor .aiccc-send{display: block!important;min-width: 6em!important; white-space: normal!important;}
+
+/* 聊天内容 */
+.aiccc-client .aiccc-list .aiccc-group{margin: 0!important;padding: 10px 0 10px 50px!important;}
+.aiccc-client .aiccc-item .aiccc-item-hd{color: #999!important;margin-bottom: 5px!important;position: relative!important;}
+.aiccc-client .aiccc-item .aiccc-item-avatar,.aiccc-client .aiccc-item .aiccc-item-avatar img{width: 35px!important;height: 35px!important;border-radius: 50%!important;overflow: hidden!important;}
+.aiccc-client .aiccc-item .aiccc-item-avatar{position: absolute!important;right: 100%!important;top: 0!important;margin-right: 10px!important;}
+.aiccc-client .aiccc-item .aiccc-item-meta{display: flex!important;}
+.aiccc-client .aiccc-item .aiccc-item-name{display: inline!important;}
+.aiccc-client .aiccc-item .aiccc-item-time{display: inline!important;padding-left: 1em!important;font-size: 12px!important;}
+.aiccc-client .aiccc-item .aiccc-item-bd{}
+.aiccc-client .aiccc-item .aiccc-item-cont{display: inline-block!important;font-size: 13px!important; max-width: 100%!important; background-color: #eee!important;border-radius: 10px!important;padding:.8em 1em!important;line-height: 1.6em!important;word-break: break-all!important;}
+.aiccc-client .aiccc-item .aiccc-item-cont img{margin: 6px 0!important;}
+.aiccc-client .aiccc-item-reply .aiccc-item-hd .aiccc-item-name{color: #92a9c1!important;}
+.aiccc-client .aiccc-item-reply .aiccc-item-cont{background-color: var(--threen_color)!important;color: #fff!important;}
+.aiccc-client .aiccc-item-reply .aiccc-item-cont *{color: #fff!important}
+.aiccc-client .bg_color_zt{background-color: var(--threen_color)!important;}
+
+/* 输入用户信息 */
+.aiccc-client .aiccc-userform{width: 300px!important; max-width: 70%!important; padding: 12px 0!important;}
+.aiccc-client .aiccc-userform .chat-userform-item{padding: 3px 0!important;}
+.aiccc-client .aiccc-userform .chat-userform-ipt{display: block!important;width: 100%!important;height: 36px!important;line-height: 34px!important;font-size: 13px!important;-webkit-appearance:none!important; border: 1px solid #ddd!important;border-radius: 5px!important;padding: 0 1em!important;outline: 0!important;transition: all .2s ease!important;}
+.aiccc-client .aiccc-userform .chat-userform-ipt:focus{border-color: #ccc!important;background-color: #fafafa!important;}
+.aiccc-client .aiccc-userform .chat-userform-ft{text-align: right!important;padding-top: 5px!important;}
+.aiccc-client .aiccc-userform .chat-userform-ft .aiccc-btn{margin-left: .5em!important; vertical-align: middle!important;}
+.aiccc-client .aiccc-userform .chat-userform-ft .aiccc-ft-label{display: inline!important;vertical-align: middle!important;color: #666!important;}
+
+/* 鼠标悬停文本提示 */
+.aiccc-client .aiccc-badge-tips{position: relative!important;z-index: 1!important;}
+.aiccc-client .aiccc-badge-tips:before{content:attr(data-badge-tips)!important; display: inline-block!important;white-space: nowrap!important; background-color: #fff!important;padding: .3em	.6em!important;border-radius: 5px!important;box-shadow: 0 5px 8px rgba(0,0,0,.2)!important; position: absolute!important;right: 0%!important;bottom: 100%!important; margin-bottom: 10px!important; opacity: 0!important;visibility: hidden!important;transition: all .3s ease!important;
+    background-color: var(--threen_color)!important;color: #fff!important;}
+.aiccc-client .aiccc-badge-tips:after{content: ''!important;display: block!important;width: 0!important;height: 0!important;overflow: hidden!important;border: 6px solid var(--threen_color)!important;border-bottom: 0!important;border-left-color: transparent!important;border-right-color: transparent!important;position: absolute!important;right: 10px!important;bottom: 100%!important;margin-bottom: 4px!important; opacity: 0!important;visibility: hidden!important;transition: all .3s ease!important;}
+.aiccc-client .aiccc-badge-tips:hover{z-index: 9!important;}
+.aiccc-client .aiccc-badge-tips:hover:before,
+.aiccc-client .aiccc-badge-tips:hover:after{opacity: 1!important;visibility: visible!important; }
+
+/* 加载中 */
+.aiccc-client .aiccc-loading-mask{width:100%!important;height:100%!important;line-height:1.5!important;position:absolute!important;left:0!important;top:0!important;z-index:2!important;display:-webkit-box!important;display:-webkit-flex!important;display:flex!important;-webkit-box-orient:vertical!important;-webkit-box-direction:normal!important;-webkit-flex-direction:column!important;flex-direction:column!important;-webkit-box-pack:center!important;-webkit-justify-content:center!important;justify-content:center!important;transition:all .4s ease!important;opacity:0!important;visibility:hidden!important; background-color: rgba(255,255,255,1)!important;}
+.aiccc-client .aiccc-loading-active{opacity:1!important;visibility:visible!important;}
+.aiccc-client .aiccc-loading-mask .aiccc-loader-txt{display:block!important;color:rgba(255,255,255,.8)!important;padding-top:.2em!important;text-align:center!important;}
+.aiccc-client .aiccc-loader-box{display:inline-block!important;padding:.5em!important;border-radius:.15em!important;margin:0 auto!important;text-align:center!important;}
+.aiccc-client .aiccc-loader-ico{font-size: 90px!important;}
+.aiccc-client .aiccc-loader-ico,.aiccc-client .aiccc-loader-ico>i{display: block!important; position:relative!important;-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important;margin:0 auto!important;}
+.aiccc-client .aiccc-loader-ico{display:block!important;font-size:0!important;color:var(--threen_color)!important;}
+.aiccc-client .aiccc-loader-ico.la-dark{color:#333}
+.aiccc-client .aiccc-loader-ico>i{display:inline-block!important;float:none!important;background-color:currentColor!important;border:0 solid currentColor}
+.aiccc-client .aiccc-loader-ico{width:.35em!important;height:.35em}
+.aiccc-client .aiccc-loader-ico>i{position:absolute!important;top:50%!important;left:50%!important;width:.08em!important;height:.08em!important;margin-top:-.04em!important;margin-left:-.04em!important;border-radius:100%!important;-webkit-animation:aicccloaderIco 1.5s infinite linear!important;-moz-animation:aicccloaderIco 1.5s infinite linear!important;-o-animation:aicccloaderIco 1.5s infinite linear!important;animation:aicccloaderIco 1.5s infinite linear}
+.aiccc-client .aiccc-loader-ico>i:nth-child(1){top:5%!important;left:50%!important;-webkit-animation-delay:-.875s!important;-moz-animation-delay:-.875s!important;-o-animation-delay:-.875s!important;animation-delay:-.875s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(2){top:18.1801948466%!important;left:81.8198051534%!important;-webkit-animation-delay:-.75s!important;-moz-animation-delay:-.75s!important;-o-animation-delay:-.75s!important;animation-delay:-.75s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(3){top:50%!important;left:95%!important;-webkit-animation-delay:-.625s!important;-moz-animation-delay:-.625s!important;-o-animation-delay:-.625s!important;animation-delay:-.625s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(4){top:81.8198051534%!important;left:81.8198051534%!important;-webkit-animation-delay:-.5s!important;-moz-animation-delay:-.5s!important;-o-animation-delay:-.5s!important;animation-delay:-.5s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(5){top:94.9999999966%!important;left:50.0000000005%!important;-webkit-animation-delay:-.375s!important;-moz-animation-delay:-.375s!important;-o-animation-delay:-.375s!important;animation-delay:-.375s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(6){top:81.8198046966%!important;left:18.1801949248%!important;-webkit-animation-delay:-.25s!important;-moz-animation-delay:-.25s!important;-o-animation-delay:-.25s!important;animation-delay:-.25s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(7){top:49.9999750815%!important;left:5.0000051215%!important;-webkit-animation-delay:-.125s!important;-moz-animation-delay:-.125s!important;-o-animation-delay:-.125s!important;animation-delay:-.125s}
+.aiccc-client .aiccc-loader-ico>i:nth-child(8){top:18.179464974%!important;left:18.1803700518%!important;-webkit-animation-delay:0s!important;-moz-animation-delay:0s!important;-o-animation-delay:0s!important;animation-delay:0s}
+@-webkit-keyframes aicccloaderIco{50%{opacity:.25;-webkit-transform:scale(0.5);transform:scale(0.5)}100%{opacity:1;-webkit-transform:scale(1);transform:scale(1)}}
+@-moz-keyframes aicccloaderIco{50%{opacity:.25;-moz-transform:scale(0.5);transform:scale(0.5)}100%{opacity:1;-moz-transform:scale(1);transform:scale(1)}}
+@-o-keyframes aicccloaderIco{50%{opacity:.25;-o-transform:scale(0.5);transform:scale(0.5)}100%{opacity:1;-o-transform:scale(1);transform:scale(1)}}
+@keyframes aicccloaderIco{50%{opacity:.25;-webkit-transform:scale(0.5);-moz-transform:scale(0.5);-o-transform:scale(0.5);transform:scale(0.5)}100%{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);transform:scale(1)}}
+
+
+
+
+
+/* -------------------- 谈话 -------------------- */
+.aiccc-client .aiccc-page .chat-page-wrap{}
+.aiccc-client .aiccc-page .chat-page-top,.aiccc-client .aiccc-page .chat-page-top a{color: #666!important;}
+.aiccc-client .aiccc-page .chat-page-top{text-align: right!important;}
+.aiccc-client .aiccc-page .chat-page-top .chat-top-avatar,
+.aiccc-client .aiccc-page .chat-page-top .chat-top-avatar img{display: block!important;width: 105px!important;height: 105px!important;border-radius: 50%!important;}
+.aiccc-client .aiccc-page .chat-page-top .chat-top-avatar img{overflow: hidden !important;}
+.aiccc-client .aiccc-page .chat-page-top .chat-top-avatar {position: absolute!important;left: -3px!important;top: 0%!important;transform: translateY(-50%)!important;margin-top: -6px!important;z-index: 2!important;background-color:var(--threen_color)!important;}
+.aiccc-client .aiccc-page .chat-page-top .chat-top-tips{display: inline-block!important;}
+.aiccc-client .aiccc-page .chat-page-top .chat-top-tips::before{content:''!important;display: inline-block!important;width: 10px!important;height: 10px!important;background-color: #5dbd00!important;border-radius: 50%!important;margin-right: .6em!important;}
+.aiccc-client .aiccc-page .chat-page-main{padding: 30px 0 10px!important;}
+.aiccc-client .aiccc-page .chat-page-may{padding: 13px 0 4px!important;margin-right: -5px!important;position: relative!important;}
+.aiccc-client .aiccc-page .chat-page-may:before{content: ''!important;display: block!important;width: 100%!important;height: 10px!important;background-image: linear-gradient(to bottom,rgba(255,255,255,1) 30%,rgba(255,255,255,0))!important; position: absolute!important;left: 0!important;bottom: 0!important;}
+.aiccc-client .aiccc-page .chat-page-may .chat-may-bar::-webkit-scrollbar { width:0!important; height:0!important;}
+.aiccc-client .aiccc-page .chat-page-may .chat-may-bar {letter-spacing: -10px!important; white-space: normal!important;}
+.aiccc-client .aiccc-win .chat-win-scroll{transition: all .3s ease!important;}
+/* .aiccc-client .aiccc-page .chat-page-may .chat-may-bar {width: 100%!important;letter-spacing: -10px!important; } */
+.aiccc-client .aiccc-page .chat-page-may .chat-may-bar {letter-spacing: -10px!important; overflow: hidden!important; max-height: 34px!important; transition: max-height .4s ease!important;}
+.aiccc-client .aiccc-page .chat-page-may .chat-may-bar-hover{max-height: 125px!important;overflow-y: auto!important;}
+.aiccc-client .aiccc-page .chat-page-may .chat-may-bar li{letter-spacing: 0!important;}
+.aiccc-client .aiccc-page .chat-may-item{display: inline-block!important;background-color: #e6f5fc!important;padding: .3em .6em!important; vertical-align: middle!important;cursor: pointer!important;transition: all .3s ease!important;margin:0 .5em .5em 0!important;}
+.aiccc-client .aiccc-page .chat-may-item:hover{color: var(--threen_color)!important;}
+.aiccc-client .aiccc-page .chat-page-edit{border-top: 1px solid #e9eef3!important;padding: 1em 0!important;}
+
+
+/* -------------------- 帮助中心-列表 -------------------- */
+.aiccc-client .aiccc-help{}
+.aiccc-client .aiccc-help .chat-help-body{}
+.aiccc-client .aiccc-help .chat-help-list{}
+.aiccc-client .aiccc-help .chat-help-item+.chat-help-item{margin-top: 3px!important;}
+.aiccc-client .aiccc-help .chat-help-item-inner{display: block!important;padding: 10px 25px 10px 10px!important;border-radius: 10px!important;transition: all .3s ease!important;position: relative!important;}
+.aiccc-client .aiccc-help .chat-help-item-inner::after{content: ''!important;display: block!important;width: 8px!important;height: 11px!important;background-repeat: no-repeat!important;background-position: center!important;background-size: contain!important;background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MDIgNkwuMzMgMTAuMDcxYTEuMTMgMS4xMyAwIDAwMS41OTggMS41OThsNC45MTYtNC45MTZhMS4wNjQgMS4wNjQgMCAwMDAtMS41MDZMMS45MjkuMzNBMS4xMyAxLjEzIDAgMDAuMzMxIDEuOTI5eiIgZmlsbD0iI2E4YmFjZCIvPjwvc3ZnPg==)!important;position: absolute!important;right: 8px!important;top: 50%!important;transform: translateY(-50%)!important;}
+.aiccc-client .aiccc-help .chat-help-item-hd{}
+.aiccc-client .aiccc-help .chat-help-item-tit{color:#1c293b!important; font-weight: normal!important;width: 100%!important;white-space: nowrap!important;overflow: hidden!important;text-overflow: ellipsis!important;margin-bottom: 5px!important; }
+.aiccc-client .aiccc-help .chat-help-item-tit::before{content:''!important;display: inline-block!important;width: 17px!important;height: 17px!important;margin-top: -2px!important; background-repeat: no-repeat!important;background-position: center!important; background-size: contain!important; background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE0IiB3aWR0aD0iMTciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0iIzAwOTFmZiIgZD0iTTExLjUzIDBhMi40NyAyLjQ3IDAgMDAtMi40NzEgMi40N3Y4LjIzNmEuODI0LjgyNCAwIDAxLTEuNjQ3IDBWMi40N0EyLjQ3IDIuNDcgMCAwMDQuOTQyIDBILjgyM0EuODI0LjgyNCAwIDAwMCAuODI0djExLjUyOWMwIC40NTUuMzY5LjgyMy44MjQuODIzaDUuOTkyYy4yODUuNDkuODEuODI0IDEuNDIuODI0YTEuNjQgMS42NCAwIDAwMS40MTgtLjgyNGg1Ljk5M2EuODI0LjgyNCAwIDAwLjgyNC0uODIzVi44MjNBLjgyNC44MjQgMCAwMDE1LjY0NyAweiIvPjwvc3ZnPg==)!important;margin-right: 5px!important;vertical-align: middle!important;}
+.aiccc-client .aiccc-help .chat-help-item-desc{color: #37516c!important;text-overflow: ellipsis!important;display: -webkit-box!important;-webkit-line-clamp: 2!important;-webkit-box-orient: vertical!important;overflow: hidden!important;}
+.aiccc-client .aiccc-help .chat-help-item-inner:hover{background-color: #f0f2f5!important;}
+.aiccc-client .aiccc-help .chat-help-foot{border-top: 1px solid #e9eef3!important;padding-top: 10px!important;margin-top: 10px!important;}
+.aiccc-client .aiccc-help .chat-help-search{width: 100%!important;position: relative!important;padding-right: 40px!important;}
+.aiccc-client .aiccc-help .chat-search-ipt{display: block!important;width: 100%!important;height: 36px!important;line-height: 36px!important;border: 0!important;outline: 0!important;padding-left: 10px!important;}
+.aiccc-client .aiccc-help .chat-search-btn{display: block!important;width: 36px!important;height: 36px!important;border: 0!important;outline: 0!important; background-color: transparent!important; cursor: pointer!important; position: absolute!important;right: 0!important;top: 0!important;background-repeat: no-repeat!important;background-position: center!important; background-size: auto 18px!important; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAYFBMVEUAAACfrb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb+frb8fQ8b3AAAAH3RSTlMAkLGGW0cX57arp21iUNXDvrmgmT1qE93cLyT28XUM4U29tQAAAL5JREFUKM+NktcSgyAQRaVJLNhQY+r9/7+Mk0nMwjrE87Zz2AJLdozLJDprpdLznnUWH5qaWwGCjC1WTpXJ83FqsRLaHoCmhRS1DwBRLUdmvgOCag0sv/lroA2bnWi6AqK7VICgZ6+hNkCzBRbnLCQHbilNs+VecXl0NL13MbMFc8OfpSBhzR91pLGMV9KlF4o+9AqEjn8Jt2zSvPdfhv45Vr4vvXLfYQYiY0oAPuGHP/me9ef5Rap/WmdFbDkv9x0WptLmxnUAAAAASUVORK5CYII=)!important;}
+
+
+/* -------------------- 帮助中心-内容 -------------------- */
+.aiccc-client .aiccc-win .chat-view-help-detail{display: none!important;}
+.aiccc-client .aiccc-titbar{ position: relative!important;line-height: 32px!important;border-bottom: 1px solid #e9eef3!important;padding:0 20px 10px 52px!important; margin-bottom: 10px!important;text-align: center!important;z-index: 3!important;}
+.aiccc-client .aiccc-titbar .chat-btn-back{display: inline-block!important;width: 32px!important;height: 32px!important;background-color: var(--threen_color)!important;border-radius: 11px!important;position: absolute!important;left: 0!important;top: 0!important;background-position: center!important;background-repeat: no-repeat!important;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMBAMAAACkW0HUAAAALVBMVEUAAAD///////////////////////////////////////////////////////+hSKubAAAAD3RSTlMA/m73gDP0uWQ3DZuUZTiJY4L/AAAALklEQVQI12MAAg5xBhBQlAWRLMIBYI4chDMBRG3MAis4CKQgKiDqJVG5QgxQwwDjKAVLVRmHdgAAAABJRU5ErkJggg==)!important; transition: all .3s ease!important;}
+.aiccc-client .aiccc-titbar .chat-btn-back:hover{background-color: #055ee1!important;}
+.aiccc-client .aiccc-titbar .chat-path-list{width: 100%!important;overflow: hidden!important;text-overflow: ellipsis!important;white-space: nowrap!important;letter-spacing: -6px!important;}
+.aiccc-client .aiccc-titbar .chat-path-item{display: inline!important;line-height: 32px!important;letter-spacing: 0!important;}
+.aiccc-client .aiccc-titbar .chat-path-item+.chat-path-item{padding-left: .5em!important;}
+.aiccc-client .aiccc-titbar .chat-path-item+.chat-path-item::before{content: '/'!important;padding-right: .5em!important;color: #92a9c1!important;font-size: 12px!important;}
+.aiccc-client .aiccc-titbar .chat-path-item,.aiccc-client .aiccc-titbar .chat-path-item a{color: #37516c!important;}
+.aiccc-client .aiccc-titbar .chat-path-item:last-of-type,.aiccc-client .aiccc-titbar .chat-path-item:last-of-type a{color: #1c293b!important;}
+.aiccc-client .chat-view-help-detail .help-detail-head{text-align: center!important;padding: 5% 30px 10px!important;}
+.aiccc-client .chat-view-help-detail .help-detail-content{font-size: 15px!important;line-height: 1.8!important;padding: 5px!important;}
+.aiccc-client .chat-view-help-detail .help-detail-content p{margin: 0!important;padding: 0!important;}
+.aiccc-client .chat-view-help-detail .help-detail-foot{text-align: center!important;padding: 7px 0 0!important;border-top: 1px solid #e9eef3!important;margin-top: 10px!important;}
+.aiccc-client .chat-view-help-detail .help-detail-updated{color: #666!important;}
+.aiccc-client .chat-view-help-detail .help-detail-updated::before{content: ''!important;display: inline-block!important;width: 17px!important;height: 17px!important; vertical-align: middle!important;margin-right: .5em!important;margin-top: -1px!important; background-repeat: no-repeat!important;background-position: center!important;background-size: contain!important;background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjIwIiB2aWV3Qm94PSIwIDAgMTggMjAiIHdpZHRoPSIxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCAwYTEgMSAwIDAgMC0xIDF2MUgyQy45IDIgMCAyLjkgMCA0djE0YzAgMS4xLjkgMiAyIDJoMTRjMS4xIDAgMi0uOSAyLTJWNGMwLTEuMS0uOS0yLTItMmgtMVYxYTEgMSAwIDAgMC0yIDB2MUg1VjFhMSAxIDAgMCAwLTEtMXpNMiA3aDE0djEwYTEgMSAwIDAgMS0xIDFIM2ExIDEgMCAwIDEtMS0xeiIgZmlsbD0iI2E4YmFjZCIvPjwvc3ZnPg==)!important;}
+.aiccc-client .help-detail-active .chat-view-help{display: none!important;}
+.aiccc-client .help-detail-active .chat-view-help-detail{display: -webkit-box!important;display: -webkit-flex!important;display: -ms-flexbox!important;display: flex!important;}
+
+
+/* -------------------- 操控按钮 -------------------- */
+.aiccc-client .aiccc-controls{position: absolute!important;right: 0!important;bottom: 0!important;}
+
+/* 默认 */
+.aiccc-client .aiccc-control-deafult{}
+.aiccc-client .aiccc-control-toggle {position: absolute!important;right: 0!important;bottom: 0!important;transition: all .3s ease!important;}
+.aiccc-client .aiccc-control-pop{position: absolute!important;right: 0!important;bottom: 0!important;z-index: 2!important;transition: all .4s ease!important;}
+.aiccc-client .aiccc-service-box{width: 380px!important;padding:28px 20px 20px!important;background-color: #fff!important;border-top: 8px solid var(--threen_color)!important;border-radius: 6px!important;box-shadow: 0 8px 10px rgba(0,0,0,.2)!important;position: absolute!important;right: 0!important;bottom: 80px!important;opacity: 0!important;visibility: hidden!important;transform: translateX(10%)!important;transition: all .4s ease!important;}
+.aiccc-client .aiccc-service-box .aiccc-service-intro{font-size: 15px!important;color: #727272!important;text-indent: 5em!important;line-height: 1.6em!important;}
+.aiccc-client .aiccc-service-box .aiccc-service-avatar {position: absolute!important;left: -2px!important;top: 0%!important;transform: translateY(-50%)!important;margin-top: -8px!important;z-index: 2!important;background-color: var(--threen_color)!important;}
+.aiccc-client .aiccc-control-pop .aiccc-close-btn-small{width: 28px!important;height: 28px!important;background-size: auto 40%!important;position: absolute!important;right: 100%!important;margin-right: 5px!important;top: 50%!important;transform: translateY(-50%)!important; box-shadow: 0 0 5px rgba(0,0,0,.4)!important;opacity: 0!important;visibility: hidden!important;transition: all .15s ease!important;}
+.aiccc-client .aiccc-controls .aiccc-service-avatar,
+.aiccc-client .aiccc-controls .aiccc-service-avatar img{display: block!important;width: 85px!important;height: 85px!important;border-radius: 50%!important;overflow: hidden!important;}
+.aiccc-client .aiccc-controls .aiccc-service-avatar{background-color: #fff!important;}
+/* .aiccc-client .aiccc-controls .aiccc-service-avatar {overflow: hidden!important;position: relative!important;} */
+.aiccc-client .aiccc-controls .aiccc-control-btn{display: inline-block!important;text-align: center!important; min-width: 60px!important;height: 60px!important; display: inline-flex!important;align-items: center!important;justify-content: center!important; padding:0 13px!important;white-space: nowrap!important; cursor: pointer!important; background-color: var(--threen_color)!important;border-radius: 10px!important;color: rgba(255,255,255,.95)!important;}
+.aiccc-client .aiccc-controls .aiccc-control-btn .control-btn-txt{display: inline-block!important; vertical-align: middle!important;max-width: 0!important;overflow: hidden!important;opacity: 0!important; padding: 0!important; transition: all .15s ease!important;}
+.aiccc-client .aiccc-controls .aiccc-control-btn .control-btn-ico{display: inline-block!important; vertical-align: middle!important; width: 32px!important;height: 32px!important;background-repeat: no-repeat!important;background-position: center!important;background-size: contain!important;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAnFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+TINBkAAAAM3RSTlMA+2tkvOmTmX5wUi3jrk0F9e29djkz8bdtaGJgXdaWKSQX3M3FqouGPRAJvqNBwKWfV0a6sr7aAAABT0lEQVQ4y33R146DMBAF0CHEJLSE3lt633b//9/WBitZBbzn6coawRQiupquRWPrwi3XfTgBWNGIzp9zES47nozxB1z+HFxFOgLaxD9KXhD26bLHiSZ84SDTEhFNqFDIZKCKZm+y3A5hyoIjmK+NMB+ZLDhBIX/2oFCRcLXmPHuu0TTNYtAYC/EG1+qINncRmTVaZAJue6YCkBs5G7KplaH3swkpheA0m6jzgRlxsdffZgVhTyY4ryWygGF1GQ9Hoh8IwVCgxbyZVPP6o7a1xqLhC7JATrzR5ca7PJbDvwp2Nr2JHAgfshDbZVXoT0W5ZJBNRgwqcv74nkDBcfX1v7fI1tSzfUVBSZLpKa8pPT5vt/lLEKSHBKg7UvvWwPeq1IYJfIvG7Ni2W9syGN/tmcZ0hznOVuw4WW5oQopBasY0yUXPuJBC6Tt1zdiD/vgFHqdQSUGCr64AAAAASUVORK5CYII=)!important;}
+.aiccc-client .aiccc-controls .aiccc-control-btn .control-btn-ico+.control-btn-txt{font-size: 16px!important;/*letter-spacing: 3px!important;*/}
+.aiccc-active .aiccc-control-deafult{opacity: 0!important;visibility: hidden!important;}
+.aiccc-client .aiccc-control-deafult-active .aiccc-service-box{opacity: 1!important;visibility: visible!important;transform: none!important;transition-delay: .1s!important;}
+.aiccc-client .aiccc-control-deafult-active .aiccc-close-btn-small{opacity: 1!important;visibility: visible!important;margin-right: 20px!important;transition: all .4s ease!important;}
+.aiccc-client .aiccc-control-deafult-active .aiccc-control-btn .control-btn-txt{max-width: 6em!important; padding: 0 .3em 0 .6em!important; transition: all .4s ease!important;opacity: 1!important;}
+
+/* 简约 */
+.aiccc-client .aiccc-control-simple{position: absolute!important;right: 0!important;bottom: 0!important;text-align: center!important;transition: all .15s ease!important;}
+.aiccc-client .aiccc-control-simple *{cursor: pointer!important;}
+.aiccc-client .aiccc-control-simple .aiccc-avatar-box{display: inline-block!important;position: relative!important;z-index: 1!important;padding: 0!important;}
+.aiccc-client .aiccc-control-simple .aiccc-service-avatar{box-sizing: content-box!important;border:3px solid var(--threen_color)!important;margin: 0 auto!important;position: relative!important;}
+.aiccc-client .aiccc-control-simple .aiccc-msg-badge{display: inline-block!important;min-width: 1.9em!important;height: 1.9em!important;line-height: 1.9em!important;text-align: center!important; background-color: var(--threen_color)!important;border-radius: 50%!important;position: absolute!important;left: 68%!important;top: -1px!important;color: #fff!important;font-size: 1em!important;z-index: 3!important;}
+.aiccc-client .aiccc-control-simple .aiccc-msg-badge .aiccc-badge-plus{font-size: .9em!important;position: absolute!important;right: 0!important;top: 0!important; margin-right: -.8em!important; font-style: normal!important; line-height: 1.1em!important;color: var(--threen_color)!important;}
+.aiccc-client .aiccc-control-simple .aiccc-btn{position: relative!important;z-index: 2!important;margin-top: -15px!important;font-size: 13px!important;letter-spacing: 1px!important;text-indent: 1px!important;padding: .3em .5em!important;}
+.aiccc-client .aiccc-control-simple .aiccc-btn::before{display: none!important;}
+.aiccc-active .aiccc-control-simple{opacity: 0!important;visibility: hidden!important;transform: translateY(10%)!important;}
+
+
+/* -------------------- 消息提示 -------------------- */
+.aiccc-client .aiccc-simple-msg{width:100%!important;display: flex!important; justify-content: flex-end!important; position: absolute!important;left: 0!important;top: -35px!important; z-index: 6!important; text-align: center!important;padding: 10px 15px 10px 115px!important;overflow: hidden!important; }
+.aiccc-client .aiccc-simple-msg .aiccc-msg-pop{display: block!important; width: 100%!important; font-size: 14px!important; line-height: 1.3!important; background-color: #fa5151!important; border-radius: 5px!important; padding: .7em 30px!important; min-width: 300px!important;max-width: 100%!important; visibility: hidden!important; opacity: 0!important;transform: translateY(-100%)!important;transition: all .15s ease!important;}
+.aiccc-client .aiccc-simple-msg,
+.aiccc-client .aiccc-simple-msg a{color: #fff!important;}
+.aiccc-client .aiccc-simple-msg .aiccc-msg-close{display: inline-block!important; width: 1.8em!important;height: 1.8em!important;line-height: 1.8em!important;text-align: center!important; position: absolute!important;right: 30px!important;top: 50%!important;transform: translateY(-50%)!important;cursor: pointer!important;transition: all .3s ease!important;opacity: 0!important;transform: translateY(-100%)!important;border-radius: 3px!important;}
+.aiccc-client .aiccc-simple-msg .aiccc-msg-close:hover{background-color:rgba(0,0,0,.12)!important;color: #fff!important;}
+.aiccc-client .aiccc-simple-msg .aiccc-msg-close:before{content: '×'!important;font-size: 1.35em!important;opacity: 0.9!important;}
+.aiccc-client .aiccc-simple-msg.aiccc-msg-active .aiccc-msg-pop{visibility: visible!important;opacity: 1!important;transform: none!important;}
+.aiccc-client .aiccc-simple-msg.aiccc-msg-active .aiccc-msg-close{opacity: 1!important;transform: translateY(-50%)!important;}
+.aiccc-client .aiccc-control-simple .aiccc-avatar-box::before,.aiccc-client .aiccc-control-simple .aiccc-avatar-box::after{content:''!important;display:block!important;width:104%!important;height:104%!important;border-radius:50%!important; box-shadow: 0 0 4px rgba(255,255,255,.03);position:absolute!important;left:-2%!important;top:-2%!important;}
+.aiccc-client .aiccc-control-simple .aiccc-avatar-box::before{animation:svBtnWave 1.2s linear infinite!important;animation-fill-mode:forwards!important;}
+.svBtnWave{animation-name:svBtnWave}
+@keyframes svBtnWave{0%{box-shadow: 0 0 0 0 rgba(0,145,255,.08);}50%{box-shadow: 0 0 0 5px rgba(0,145,255,.18);}100%{box-shadow: 0 0 0 15px rgba(0,145,255,0);}}
+.aiccc-client .aiccc-control-simple .aiccc-service-avatar{animation: avatarZoom linear 1.3s infinite!important;}
+@keyframes avatarZoom{
+    0%{transform: scale(.98);}
+    50%{transform: scale(1.03);}
+    100%{transform: scale(.98);}
+}
+
+
+
+@media only screen and (max-width: 1280px) {
+    .aiccc-client .aiccc-wrap{width: 420px!important;}
+}
+
+@media only screen and (max-width: 768px) {
+    .aiccc-client .aiccc-control-deafult-active .aiccc-close-btn-small,
+    .aiccc-client .aiccc-controls .aiccc-control-btn .control-btn-ico+.control-btn-txt,
+    .aiccc-client .aiccc-control-deafult-active .aiccc-service-box{display: none!important;}
+    .aiccc-client .aiccc-badge-tips:before,.aiccc-badge-tips:after{display: none!important;}
+    .aiccc-client .aiccc-editor .aiccc-edit-cell-ft p{display: none!important;}
+}
+
+@media only screen and (max-width: 640px) {
+
+    /* 字体大小 */
+    .aiccc-client .aiccc-head-tabs .aiccc-tab-txt,
+    .aiccc-client .aiccc-help .chat-help-item-tit,
+    .aiccc-editor .aiccc-textarea,
+    .aiccc-client .aiccc-help .chat-search-ipt,
+    .aiccc-client .aiccc-titbar .chat-path-list,
+    .aiccc-client .chat-view-help-detail .help-detail-foot{font-size: 13px!important;}
+
+    /* 圆角 */
+    .aiccc-client .aiccc-head-tabs .aiccc-tab-item{border-radius: 4px 4px 0 0!important;}
+    .aiccc-client .aiccc-btn,
+    .aiccc-client .aiccc-item .aiccc-item-cont,.aiccc-client .aiccc-userform .chat-userform-ipt{border-radius: 4px!important;}
+
+    /* 布局 */
+    .aiccc-client .aiccc-wrap{width: 100%!important;height: auto!important;min-height: 0!important;}
+    .aiccc-client.aiccc-active,
+    .aiccc-active .aiccc-wrap{width: calc(100% - 25px)!important;height:calc(100% - 25px)!important;}
+    .aiccc-client{right: 0!important;bottom: 0!important;}
+    .aiccc-client .aiccc-wrap{max-height: 100%!important;bottom: 0!important;}
+    .aiccc-client .aiccc-win{bottom: 0!important;}
+    .aiccc-client .aiccc-win .chat-win-body{padding-bottom: 15px!important;border-radius: 0!important;}
+
+    /* 滚动条 */
+    .aiccc-client ::-webkit-scrollbar { width:3px!important; height:3px!important;}
+
+    /* 按钮 */
+    .aiccc-client .aiccc-btn{padding: .3em .8em!important;}
+
+    /* chat-win-head */
+    .aiccc-client .aiccc-win .chat-win-head{padding-top: 20px!important;padding:25px 35px 0 0!important; background-color:#f6faff!important;justify-content: flex-end!important;}
+    .aiccc-client .aiccc-win .chat-win-head .chat-page-link .link-ico-full{background-size: auto 18px!important;}
+    .aiccc-client .aiccc-win .aiccc-head-tabs .aiccc-tab-item{font-size: 12px!important;min-width: 6em!important;padding: .6em .8em .4em!important;}
+    .aiccc-client .aiccc-win .aiccc-head-tabs .aiccc-tab-txt{font-size: 13px!important;}
+    .aiccc-client .aiccc-win .aiccc-head-tabs .aiccc-tab-ico{width: 15px!important;height: 15px!important;margin-right: 0.5em!important;}
+    .aiccc-client .aiccc-win .chat-win-body{border-top-width: 5px!important;}
+    .aiccc-client .aiccc-wrap .aiccc-close-btn{z-index: 2!important;width: 22px!important;height: 22px!important;background-size: auto 40%!important;position: absolute!important;right: 10px!important;top: 10px!important;left: auto!important;box-shadow: 0 0 3px 3px rgba(1,118,255,.1)!important;}
+    .aiccc-client .aiccc-close-btn::after{background-size: auto 36%!important;}
+
+    /* loading */
+    .aiccc-client .aiccc-loader-ico{font-size: 72px!important;}
+
+    /* -------------------- 谈话 -------------------- */
+    .aiccc-client .aiccc-page .chat-page-top .chat-top-avatar{left: 5px!important;}
+    .aiccc-client .aiccc-page .chat-page-top .chat-top-avatar,.aiccc-client .aiccc-page .chat-page-top .chat-top-avatar img{width:72px!important;height:72px!important;}
+    .aiccc-client .aiccc-page .chat-page-top .chat-top-avatar img{display: block!important;position: relative!important;z-index: 2!important;}
+    .aiccc-client .aiccc-page .chat-page-top .chat-top-avatar::before{content: ''!important;display: block!important;width: 30px!important;height: 9px!important;background-color: #fff!important;position: absolute!important;left: -10px!important;top: 50%!important;z-index: 1!important;margin-top: -2px!important;}
+    .aiccc-client .aiccc-page .chat-page-main{padding: 15px 0!important;}
+    .aiccc-client .aiccc-page .aiccc-item .aiccc-item-cont{padding: .4em .8em!important;}
+    .aiccc-client .aiccc-page .aiccc-userform{max-width: 75%!important;}
+    .aiccc-client .aiccc-page .aiccc-userform .chat-userform-ipt{height: 30px!important;line-height: 28px!important;padding: 0 .6em!important;}
+    .aiccc-client .aiccc-page .chat-may-item{padding: .2em .6em!important;}
+    .aiccc-client .aiccc-page .chat-may-item:hover{color: inherit!important;}
+    .aiccc-client .aiccc-page .chat-may-item:active{color: var(--threen_color)!important;}
+    .aiccc-client .aiccc-page .chat-may-item{margin: 0 .35em .2em 0!important;}
+    .aiccc-client .aiccc-page .chat-page-edit{padding:6px 6px 6px 10px!important;border: 1px solid #e9eef3!important;border-radius: 5px!important;background-color: #fafafa!important;}
+    .aiccc-client .aiccc-page .aiccc-editor .aiccc-textarea{height: 2.2em!important;padding: .35em 0!important;background-color: transparent!important; }
+    .aiccc-client .aiccc-page .aiccc-editor .aiccc-textarea::-webkit-scrollbar { width:0!important; height:0!important;}
+    .aiccc-client .aiccc-page .aiccc-editor .aiccc-send{letter-spacing: 0!important;text-indent: 0!important;min-width: inherit!important;padding: 0 1em!important;height: 2.5em!important;line-height: 2.5em!important; }
+    .aiccc-client .aiccc-page .chat-page-may .chat-may-bar,.aiccc-client .aiccc-page .chat-page-may ul.chat-may-bar,.aiccc-client .aiccc-page .chat-page-may .chat-may-bar:hover {width: auto!important;overflow: hidden!important;overflow-x: auto!important; white-space: nowrap!important;padding: 10px 1em 6px 0!important;max-height: inherit!important;}
+    .aiccc-client .aiccc-page .chat-page-may{position: relative!important;padding: 0!important;}
+    .aiccc-client .aiccc-page .chat-page-may:before{display: none!important;}
+    .aiccc-client .aiccc-page .chat-page-may::after{content: ''!important;display: block!important;width: 3em!important;height: 90%!important;background-image: linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1) 80%)!important; position: absolute!important;right: 0!important;top: 0!important;}
+    .aiccc-client .aiccc-page .chat-page-may .chat-may-bar::-webkit-scrollbar { width:0!important; height:0!important;}
+    .aiccc-client .aiccc-page .chat-page-may .chat-may-bar::-webkit-scrollbar-thumb {background:var(--threen_color)!important;border-radius: 6px!important;}
+    .aiccc-client .aiccc-page .chat-page-may .chat-may-bar::-webkit-scrollbar-thumb:hover { background:var(--threen_color)!important;}
+
+
+
+    /* -------------------- 帮助中心 -------------------- */
+    .aiccc-client .aiccc-titbar{line-height: 26px!important;padding-bottom: 5px!important;}
+    .aiccc-client .aiccc-titbar .chat-btn-back{width: 22px!important;height: 22px!important;border-radius: 6px!important;background-size: auto 36%!important;top: 5px!important;}
+    .aiccc-client .aiccc-help .chat-help-item-tit::before{width: 16px!important;height: 16px!important;margin-top: -1px!important;}
+
+    /* -------------------- 操控按钮 -------------------- */
+    .aiccc-client .aiccc-controls{right: 15px!important;bottom: 15px!important;}
+    .aiccc-client .aiccc-controls .aiccc-service-avatar{border-width: 2px!important;}
+    .aiccc-client .aiccc-controls .aiccc-service-avatar,.aiccc-client .aiccc-controls .aiccc-service-avatar img{width: 60px!important;height: 60px!important;}
+    .aiccc-client .aiccc-controls .aiccc-control-btn{min-width: 40px!important;height: 40px!important;padding: 0 8px!important;}
+    .aiccc-client .aiccc-controls .aiccc-control-btn .control-btn-ico{width: 24px!important;height: 24px!important;background-size: auto 85%!important;}
+    .aiccc-client .aiccc-control-simple .aiccc-msg-badge{font-size: .92em!important;top: -2px!important;min-width: 1.6em!important;height: 1.6em!important;line-height: 1.6em!important;}
+    .aiccc-client .aiccc-control-simple .aiccc-btn{font-size: 10px!important;white-space: nowrap!important;padding: .3em .6em!important;display: block!important; }
+    @keyframes svBtnWave{0%{box-shadow: 0 0 0 0 rgba(0,145,255,.1);}50%{box-shadow: 0 0 0 3px rgba(0,145,255,.2);}100%{box-shadow: 0 0 0 10px rgba(0,145,255,0);}}
+
+    /* -------------------- 消息提示 -------------------- */
+    .aiccc-client .aiccc-simple-msg{padding: 8px 15px 8px 85px!important;top: 65px!important;}
+    .aiccc-client .aiccc-simple-msg.aiccc-msg-active .aiccc-msg-close{right: 20px!important;}
+    .aiccc-client .aiccc-simple-msg .aiccc-msg-pop{padding: .6em 30px!important;font-size: 13px!important;min-width: inherit!important;}
+
+}
+
+
+@keyframes aicccc_rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.aiccc-client .rotate-effect {
+    width: 18px!important;
+    height: 18px!important;
+    border-width: 2px!important;
+    display: inline-block!important;
+    vertical-align: text-bottom!important;
+    border-right-color: transparent!important;
+    border-radius: 50%!important;
+    animation: aicccc_rotate .75s linear infinite;
+    color: #ffffff!important;
+    border-style: solid!important;
+}
+.aiccc-client .aiccc-item-cont ol{
+    margin-left: 20px!important;
+    padding:0!important;
+}
+.aiccc-client .aiccc-item-cont ol li{
+    display: list-item !important;
+    list-style: decimal!important;
+}
+
+.aiccc-client .aiccc-item-cont pre{
+    padding: 10px!important;
+    background-color: rgba(88,88,88,0.5)!important;
+    border-radius: 5px!important;
+}
+.aiccc-client .aiccc-item-cont img{
+    max-width: 100%!important;
+}
+
+
+
+
+
+/* 2023-07-08 */
+
+/* -------------------- 用户信息输入 -------------------- */
+.aiccc-client .aiccc-userform-win{width: 500px!important;height: 650px!important; min-height: 72vh!important;max-height: calc(95vh - 110px)!important; position: absolute!important;right: 0!important;bottom: 80px!important;display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;-webkit-box-orient:vertical!important;-webkit-box-direction:normal!important;-webkit-flex-direction:column!important;flex-direction:column!important;
+    border-radius:8px!important;background-color: #fff!important;box-shadow: 0 0 20px rgba(0,0,0,.2)!important;overflow: hidden!important; opacity: 0!important;visibility: hidden!important;transform: translateY(20px)!important;transition: transform .15s ease!important; }
+.aiccc-client .aiccc-userform-win .userform-win-close{display: block!important;width: 32px!important;height: 32px!important; cursor: pointer!important; background-repeat: no-repeat!important;background-position: center!important;background-size: 16px auto!important;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAKlBMVEUAAAD///////////////////////////////////////////////////+Gu8ovAAAADXRSTlMA3BTg2BjRGsXE5yIhrefUDwAAAFRJREFUCNdjSCtgAAL2NAZbUxAj+BbD5ssBDAystjYM7LJCDAyKF4EKAi8qMMmKAqWZfB1YriiAFKrc6HViAIO5NxkQDLgUQjFcO9xAuBVwS+HOAABWkRoZUPd4DgAAAABJRU5ErkJggg==)!important;position: absolute!important;right: 20px!important;top: 20px!important;opacity: .8!important;transition: all .3s ease!important;}
+.aiccc-client .aiccc-userform-win .userform-win-close:hover{opacity: 1!important;}
+.aiccc-client .aiccc-userform-win .userform-win-head{padding: 55px 30px 35px!important;text-align: center!important;background-color: var(--threen_color)!important;background-image: linear-gradient(to right,var(--threen_color),var(--threen_color_light))!important;}
+.aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-box{text-align: center!important;}
+.aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-avatar,
+.aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-avatar img{display: block!important; width: 90px!important;height: 90px!important;border-radius:50%!important;overflow: hidden!important;}
+.aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-avatar{margin: 0 auto 10px!important;box-shadow: 0 0 20px rgba(0,0,0,.25)!important;}
+.aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-avatar img{background-color: #fff!important; }
+.aiccc-client .aiccc-userform-win .userform-win-head,
+.aiccc-client .aiccc-userform-win .userform-win-head a{color:#fff!important;}
+.aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-txt{font-size: 18px!important;}
+.aiccc-client .aiccc-userform-active .aiccc-simple-msg{top: -75px!important;padding: 10px 15px!important;}
+.aiccc-client .aiccc-userform-win .userform-win-body{-webkit-box-flex:1!important;-webkit-flex:1!important;flex:1!important;min-width:0!important;min-height: 0!important;background-color: #fff!important;margin-top: -16px!important;border-radius: 10px 10px 0 0!important; }
+.aiccc-client .aiccc-userform-wrap{padding: 10%!important;}
+.aiccc-client .aiccc-userform-item{margin-bottom:18px!important;}
+.aiccc-client .aiccc-userform-ipt{display: block!important; width: 100%!important; height: 45px!important; line-height:45px!important;font-size:15px!important; background-color: #f2f7fd!important;border-radius:6px!important;padding-left: 45px!important;background-position: 15px center!important;background-repeat: no-repeat!important;background-size: auto 20px!important;outline: 0!important;}
+.aiccc-client .aiccc-userform-ipt::-webkit-input-placeholder{color:#b7b7b7!important;}
+.aiccc-client .aiccc-userform-ipt:focus::-webkit-input-placeholder{color:#ddd!important;}
+.aiccc-client .aiccc-userform-ipt.userform-ipt-company{background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAgVBMVEUAAADKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNlVMj0FAAAAKnRSTlMAj+r4yL+6F/Lv4qzYp3b6wp6Th4JnUUM0DdHNmHxdLdyvo19KPB9tSSeFCtLEAAAA2UlEQVQY032R647CIBSED1KghYK92pu1uupe5v0fcFkiTfvDnWQyyRfyheTQ25Tiei3MOMqy22LAlhrmQ+O8x0R33xPqLT5ioNn3C+x2a1XEB/ADQlnuV7ifgFPUTqBxEizBX7LVfQnuKsm01hkC5vhUte+Mc94qpVq83DgidCdJ0X4b3B8W1TRZYye+d3tJs/RLE929Yr41WLFKVjcHqtG42RkeMXgKeJyzZ/dkiDgZhhPWn6QRS6I+4L27IOo2r//DAHKihx9/iZDX0QQjWqQUl0ZIP5be5RdRnR+7XJPKlwAAAABJRU5ErkJggg==)!important;}
+.aiccc-client .aiccc-userform-ipt.userform-ipt-phone{background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAQlBMVEUAAADKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNnKzNkHj9S6AAAAFXRSTlMA4Ank6rrbsyMsw6CKHcvJqqUbPS7L2hZzAAAAdklEQVQY092RSxICMQgFQyA4hmR+yv2vKoORVOkN7M2DLooFJOMU5ADkTG+aAn4A1DZ0hTxZqAxdIE063kLnqRf6V43f+vcmGef08x48YvpQMJAIr9BjaNELao28kKF374pt82KPpznMHvG0LmutdWPeLFbppl6sCgc3WS5OogAAAABJRU5ErkJggg==)!important;}
+.aiccc-client .aiccc-userform-ipt.userform-ipt-email{
+     background-image:url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23CACCD9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>') !important;}
+
+
+.aiccc-client .aiccc-userform-foot{padding-top: 20px!important;}
+.aiccc-client .aiccc-userform-btn{display: block!important; width: 100%!important; height: 45px!important;line-height: 45px!important; letter-spacing: 2px!important; text-indent: -2px!important; cursor: pointer!important; text-align: center!important; border-radius:30px!important; color:#fff!important;font-size: 16px!important; background-color:var(--threen_color)!important;background-image: linear-gradient(to right,var(--threen_color),var(--threen_color_light))!important;}
+.aiccc-client .aiccc-userform-active .aiccc-win{opacity: 0!important;visibility: hidden!important;}
+.aiccc-client .aiccc-userform-active .aiccc-userform-win{opacity: 1!important;visibility: visible!important;transform: translateY(0px)!important; }
+
+@media only screen and (max-width: 1280px){
+    .aiccc-client .aiccc-userform-win{width: 420px!important;}
+}
+@media only screen and (max-width: 640px){
+    .aiccc-client .aiccc-userform-win{width: 100%!important;right: 0!important;bottom: 0!important;height: 100%!important;max-height: 100%!important;z-index: 3!important;}
+    .aiccc-client .aiccc-userform-win .userform-win-head{padding: 50px 20px 30px!important;}
+    .aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-avatar, .aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-avatar img{width: 72px!important;height: 72px!important;}
+    .aiccc-client .aiccc-userform-win .userform-win-head .aiccc-sv-txt{font-size: 16px!important;}
+    .aiccc-client .aiccc-userform-win .userform-win-close{right: 10px!important;top: 10px!important;background-size: auto 12px!important;}
+    .aiccc-client .aiccc-userform-active .aiccc-simple-msg{top: 5px!important;}
+    .aiccc-client .aiccc-userform-win .userform-win-body{box-shadow: 0 -5px 8px rgba(0,0,0,.06)!important;overflow: hidden!important;overflow-y: auto!important;}
+    .aiccc-client .aiccc-userform-wrap{padding:10% 8% 12%!important;}
+    .aiccc-client .aiccc-userform-ipt{height: 40px!important;line-height: 40px!important; font-size: 14px!important; background-size: auto 16px!important;padding-left: 40px!important;}
+    .aiccc-client .aiccc-userform-btn{height: 40px!important;line-height: 40px!important;font-size: 16px!important;}
+}
